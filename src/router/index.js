@@ -103,6 +103,11 @@ const router = createRouter({
                     path: '/documentation',
                     name: 'documentation',
                     component: () => import('@/views/pages/Documentation.vue')
+                },
+                {
+                    path: '/pages/history',
+                    name: 'history',
+                    component: () => import('@/views/pages/History.vue')
                 }
             ]
         },
@@ -131,8 +136,35 @@ const router = createRouter({
             path: '/auth/error',
             name: 'error',
             component: () => import('@/views/pages/auth/Error.vue')
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            redirect: '/pages/notfound'
         }
     ]
 });
+
+router.beforeEach((to, from, next) => {
+    const publicPages = ['/landing', '/auth/login', '/auth/access', '/auth/error'];
+    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+    // Jeśli użytkownik niezalogowany próbuje wejść na '/', przekieruj na /landing
+    if (!loggedIn && to.path === '/') {
+        return next('/landing');
+    }
+
+    // Użytkownik niezalogowany – brak dostępu do stron prywatnych
+    if (!loggedIn && !publicPages.includes(to.path)) {
+        return next('/auth/access');
+    }
+
+    // Zalogowany użytkownik nie może wejść na stronę logowania
+    if (loggedIn && to.path === '/auth/login') {
+        return next('/');
+    }
+
+    next();
+});
+
 
 export default router;
