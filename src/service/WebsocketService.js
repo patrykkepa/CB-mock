@@ -4,7 +4,7 @@ import { useToast } from 'primevue/usetoast';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-let instance = null; // singleton
+let instance = null;
 
 export function useWebSocketService() {
     if (instance) return instance;
@@ -17,14 +17,14 @@ export function useWebSocketService() {
     const devices = reactive({});
     const pendingCommands = reactive({});
 
-    /** 🔌 Połączenie WebSocket */
+    /** Połączenie WebSocket */
     const connectWebSocket = () => {
         const isDev = import.meta.env.DEV;
         const protocol = isDev ? 'wss' : window.location.protocol === 'https:' ? 'wss' : 'ws';
         const host = isDev ? 'hoststation.local' : window.location.host;
         const socketUrl = `${protocol}://${host}/ws`;
 
-        console.log('🔌 Connecting to', socketUrl);
+        console.log('Connecting to', socketUrl);
         ws.value = new WebSocket(socketUrl);
 
         ws.value.onopen = () => {
@@ -57,7 +57,7 @@ export function useWebSocketService() {
                         : JSON.parse(raw);
                 handleMessage(msg);
             } catch (e) {
-                console.warn('⚠️ Invalid WS message:', event.data, e);
+                console.warn('Invalid WS message:', event.data, e);
             }
         };
     };
@@ -67,7 +67,7 @@ export function useWebSocketService() {
         reconnectTimer.value = setTimeout(connectWebSocket, 5000);
     };
 
-    /** 🧠 Obsługa przychodzących wiadomości */
+    /** Obsługa przychodzących wiadomości */
     const handleMessage = (msg) => {
         // 📦 Lista urządzeń (np. po info, reboot, ota)
         if (msg.devices) {
@@ -79,7 +79,7 @@ export function useWebSocketService() {
                 }
             });
 
-            // 🔁 Dopasowanie do oczekujących komend (reboot / ota)
+            // Dopasowanie do oczekujących komend (reboot / ota)
             for (const [id, cmd] of Object.entries(pendingCommands)) {
                 if (!cmd?.device_id || !cmd?.cmd) continue;
                 if (!['reboot', 'ota'].includes(cmd.cmd)) continue;
@@ -91,26 +91,26 @@ export function useWebSocketService() {
                         devices: msg.devices,
                     });
                     delete pendingCommands[id];
-                    console.log(`✅ Device update matched pending ${cmd.cmd} for ${cmd.device_id}`);
+                    console.log(`Device update matched pending ${cmd.cmd} for ${cmd.device_id}`);
                 }
             }
 
             return;
         }
 
-        // ⚙️ Odpowiedź kontrolna (ping/info)
+        // Odpowiedź kontrolna (ping/info)
         if (msg.incoming && (msg.incoming.control === true || msg.incoming.control === 'true')) {
             const incomingId = String(msg.incoming.id);
             const session = pendingCommands[incomingId];
             if (session) {
                 session.resolve(msg.incoming);
                 delete pendingCommands[incomingId];
-                console.log(`✅ Control response matched for ${incomingId}`);
+                console.log(`Control response matched for ${incomingId}`);
             }
             return;
         }
 
-        // 💡 Wiadomość lampy (control=false)
+        // Wiadomość lampy (control=false)
         if (msg.incoming && (msg.incoming.control === false || msg.incoming.control === 'false')) {
             const inc = msg.incoming;
             const dev =
@@ -128,16 +128,16 @@ export function useWebSocketService() {
             return;
         }
 
-        // 💬 Fallback: prosta odpowiedź (bez control/devices)
+        // Fallback: prosta odpowiedź (bez control/devices)
         if (msg.id && pendingCommands[msg.id]) {
             pendingCommands[msg.id].resolve(msg);
             delete pendingCommands[msg.id];
-            console.log(`✅ Simple WS response matched for ${msg.id}`);
+            console.log(`Simple WS response matched for ${msg.id}`);
             return;
         }
     };
 
-    /** 🚀 Wysyłanie komend z oczekiwaniem na odpowiedź */
+    /** Wysyłanie komend z oczekiwaniem na odpowiedź */
     const sendCommand = async (deviceId, cmd, args = []) => {
         const id = uuidv4();
         const payload = {
@@ -159,13 +159,13 @@ export function useWebSocketService() {
 
             try {
                 await axios.post('/api/control', payload);
-                console.log('📤 Command sent:', payload);
+                console.log('Command sent:', payload);
             } catch (err) {
                 delete pendingCommands[id];
                 reject(err);
             }
 
-            // ⏳ timeout: reboot (20s), ota (60s), inne (10s)
+            // timeout: reboot (20s), ota (20s), inne (10s)
             const timeoutMs =
                 cmd === 'ota' ? 20000 : cmd === 'reboot' ? 20000 : 10000;
 
@@ -178,7 +178,7 @@ export function useWebSocketService() {
         });
     };
 
-    // ✅ Publiczne API
+    // Publiczne API
     instance = {
         ws,
         isConnected,
@@ -188,6 +188,6 @@ export function useWebSocketService() {
         sendCommand,
     };
 
-    connectWebSocket(); // automatyczne połączenie przy pierwszym użyciu
+    connectWebSocket();
     return instance;
 }

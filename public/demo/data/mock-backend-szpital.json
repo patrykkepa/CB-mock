@@ -1,0 +1,1713 @@
+{
+    "id": "B-1",
+    "name": "Szpital Miejski",
+    "map_position": { "x": "62%", "y": "48%" },
+    "address": "ul. Zdrowia 10, Warszawa",
+    "type": "Hospital",
+    "area_m2": 4121,
+    "operator": {
+        "name": "Operator Szpital Miejski",
+        "contact_person": "Szpital Miejski Admin",
+        "phone": "+48 600 00 001",
+        "email": "szpitalmiejski@example.com"
+    },
+    "stations": [
+        {
+            "device_id": "DEV-1-1",
+            "name": "Station 1-1",
+            "firmware": "v2.8",
+            "heartbeats": 57,
+            "uptime": 39736,
+            "controllers": [
+                {
+                    "id": "CTRL-1-1-1",
+                    "chip_rev": "rev_1",
+                    "firmware": "v3.0",
+                    "free_heap": 11417,
+                    "uptime": 18668,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-1-2",
+                    "chip_rev": "rev_3",
+                    "firmware": "v3.1",
+                    "free_heap": 17242,
+                    "uptime": 5114,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "device_id": "DEV-1-2",
+            "name": "Station 1-2",
+            "firmware": "v3.6",
+            "heartbeats": 11,
+            "uptime": 1269,
+            "controllers": [
+                {
+                    "id": "CTRL-1-2-1",
+                    "chip_rev": "rev_3",
+                    "firmware": "v3.6",
+                    "free_heap": 23055,
+                    "uptime": 35409,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L11",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L12",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L13",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-2-2",
+                    "chip_rev": "rev_1",
+                    "firmware": "v1.2",
+                    "free_heap": 23907,
+                    "uptime": 49643,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-2-3",
+                    "chip_rev": "rev_3",
+                    "firmware": "v2.4",
+                    "free_heap": 25157,
+                    "uptime": 49436,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "device_id": "DEV-1-3",
+            "name": "Station 1-3",
+            "firmware": "v3.1",
+            "heartbeats": 19,
+            "uptime": 42651,
+            "controllers": [
+                {
+                    "id": "CTRL-1-3-1",
+                    "chip_rev": "rev_2",
+                    "firmware": "v1.1",
+                    "free_heap": 26208,
+                    "uptime": 3334,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-3-2",
+                    "chip_rev": "rev_3",
+                    "firmware": "v2.7",
+                    "free_heap": 19394,
+                    "uptime": 34049,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "device_id": "DEV-1-4",
+            "name": "Station 1-4",
+            "firmware": "v3.6",
+            "heartbeats": 162,
+            "uptime": 84263,
+            "controllers": [
+                {
+                    "id": "CTRL-1-4-1",
+                    "chip_rev": "rev_1",
+                    "firmware": "v3.8",
+                    "free_heap": 14610,
+                    "uptime": 48417,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L11",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L12",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L13",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L14",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L15",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L16",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L17",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L18",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L19",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L20",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-4-2",
+                    "chip_rev": "rev_2",
+                    "firmware": "v3.5",
+                    "free_heap": 15435,
+                    "uptime": 8145,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L11",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L12",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L13",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L14",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L15",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L16",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L17",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L18",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-4-3",
+                    "chip_rev": "rev_3",
+                    "firmware": "v2.3",
+                    "free_heap": 17740,
+                    "uptime": 36692,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L11",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L12",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L13",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L14",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L15",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-4-4",
+                    "chip_rev": "rev_1",
+                    "firmware": "v2.7",
+                    "free_heap": 21293,
+                    "uptime": 7929,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "device_id": "DEV-1-5",
+            "name": "Station 1-5",
+            "firmware": "v2.8",
+            "heartbeats": 143,
+            "uptime": 76173,
+            "controllers": []
+        },
+        {
+            "device_id": "DEV-1-6",
+            "name": "Station 1-6",
+            "firmware": "v2.1",
+            "heartbeats": 152,
+            "uptime": 89909,
+            "controllers": [
+                {
+                    "id": "CTRL-1-6-1",
+                    "chip_rev": "rev_1",
+                    "firmware": "v2.0",
+                    "free_heap": 27227,
+                    "uptime": 20699,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L11",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L12",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L13",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L14",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L15",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-6-2",
+                    "chip_rev": "rev_1",
+                    "firmware": "v1.1",
+                    "free_heap": 11418,
+                    "uptime": 22807,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L11",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L12",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-6-3",
+                    "chip_rev": "rev_3",
+                    "firmware": "v1.5",
+                    "free_heap": 24116,
+                    "uptime": 4659,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L11",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L12",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L13",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L14",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L15",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L16",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L17",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L18",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L19",
+                            "state": "ON"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "device_id": "DEV-1-7",
+            "name": "Station 1-7",
+            "firmware": "v2.1",
+            "heartbeats": 70,
+            "uptime": 25228,
+            "controllers": [
+                {
+                    "id": "CTRL-1-7-1",
+                    "chip_rev": "rev_1",
+                    "firmware": "v2.8",
+                    "free_heap": 29214,
+                    "uptime": 26908,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "device_id": "DEV-1-8",
+            "name": "Station 1-8",
+            "firmware": "v2.8",
+            "heartbeats": 128,
+            "uptime": 38585,
+            "controllers": [
+                {
+                    "id": "CTRL-1-8-1",
+                    "chip_rev": "rev_2",
+                    "firmware": "v2.5",
+                    "free_heap": 17607,
+                    "uptime": 21686,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "device_id": "DEV-1-9",
+            "name": "Station 1-9",
+            "firmware": "v1.1",
+            "heartbeats": 9,
+            "uptime": 23639,
+            "controllers": [
+                {
+                    "id": "CTRL-1-9-1",
+                    "chip_rev": "rev_1",
+                    "firmware": "v2.5",
+                    "free_heap": 23109,
+                    "uptime": 32448,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-9-2",
+                    "chip_rev": "rev_2",
+                    "firmware": "v3.7",
+                    "free_heap": 25486,
+                    "uptime": 25504,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-9-3",
+                    "chip_rev": "rev_3",
+                    "firmware": "v1.7",
+                    "free_heap": 27952,
+                    "uptime": 3853,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-9-4",
+                    "chip_rev": "rev_3",
+                    "firmware": "v1.8",
+                    "free_heap": 14699,
+                    "uptime": 24847,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "device_id": "DEV-1-10",
+            "name": "Station 1-10",
+            "firmware": "v1.3",
+            "heartbeats": 33,
+            "uptime": 91069,
+            "controllers": [
+                {
+                    "id": "CTRL-1-10-1",
+                    "chip_rev": "rev_1",
+                    "firmware": "v3.9",
+                    "free_heap": 18234,
+                    "uptime": 45859,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L11",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L12",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L13",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L14",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L15",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L16",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-10-2",
+                    "chip_rev": "rev_3",
+                    "firmware": "v3.4",
+                    "free_heap": 28187,
+                    "uptime": 41090,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-10-3",
+                    "chip_rev": "rev_1",
+                    "firmware": "v1.7",
+                    "free_heap": 26204,
+                    "uptime": 31219,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L11",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L12",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L13",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L14",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L15",
+                            "state": "ON"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "device_id": "DEV-1-11",
+            "name": "Station 1-11",
+            "firmware": "v3.9",
+            "heartbeats": 172,
+            "uptime": 31506,
+            "controllers": [
+                {
+                    "id": "CTRL-1-11-1",
+                    "chip_rev": "rev_1",
+                    "firmware": "v3.3",
+                    "free_heap": 26770,
+                    "uptime": 37485,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-11-2",
+                    "chip_rev": "rev_1",
+                    "firmware": "v2.4",
+                    "free_heap": 26431,
+                    "uptime": 34757,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "device_id": "DEV-1-12",
+            "name": "Station 1-12",
+            "firmware": "v3.6",
+            "heartbeats": 169,
+            "uptime": 59449,
+            "controllers": [
+                {
+                    "id": "CTRL-1-12-1",
+                    "chip_rev": "rev_1",
+                    "firmware": "v2.7",
+                    "free_heap": 29733,
+                    "uptime": 47504,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L11",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L12",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L13",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L14",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L15",
+                            "state": "ON"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-12-2",
+                    "chip_rev": "rev_3",
+                    "firmware": "v2.7",
+                    "free_heap": 12443,
+                    "uptime": 41349,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L11",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L12",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L13",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L14",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L15",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L16",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L17",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L18",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L19",
+                            "state": "ON"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "device_id": "DEV-1-13",
+            "name": "Station 1-13",
+            "firmware": "v1.7",
+            "heartbeats": 174,
+            "uptime": 3209,
+            "controllers": [
+                {
+                    "id": "CTRL-1-13-1",
+                    "chip_rev": "rev_2",
+                    "firmware": "v2.2",
+                    "free_heap": 19466,
+                    "uptime": 21187,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "OFF"
+                        }
+                    ]
+                },
+                {
+                    "id": "CTRL-1-13-2",
+                    "chip_rev": "rev_2",
+                    "firmware": "v2.5",
+                    "free_heap": 25939,
+                    "uptime": 3789,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L11",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L12",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L13",
+                            "state": "ON"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "device_id": "DEV-1-14",
+            "name": "Station 1-14",
+            "firmware": "v3.1",
+            "heartbeats": 110,
+            "uptime": 68856,
+            "controllers": []
+        },
+        {
+            "device_id": "DEV-1-15",
+            "name": "Station 1-15",
+            "firmware": "v2.1",
+            "heartbeats": 51,
+            "uptime": 43124,
+            "controllers": [
+                {
+                    "id": "CTRL-1-15-1",
+                    "chip_rev": "rev_1",
+                    "firmware": "v1.8",
+                    "free_heap": 24280,
+                    "uptime": 4314,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "device_id": "DEV-1-16",
+            "name": "Station 1-16",
+            "firmware": "v2.4",
+            "heartbeats": 54,
+            "uptime": 63911,
+            "controllers": [
+                {
+                    "id": "CTRL-1-16-1",
+                    "chip_rev": "rev_1",
+                    "firmware": "v1.5",
+                    "free_heap": 29258,
+                    "uptime": 13402,
+                    "lamps": [
+                        {
+                            "lamp_id": "L1",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L2",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L3",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L4",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L5",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L6",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L7",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L8",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L9",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L10",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L11",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L12",
+                            "state": "OFF"
+                        },
+                        {
+                            "lamp_id": "L13",
+                            "state": "ON"
+                        },
+                        {
+                            "lamp_id": "L14",
+                            "state": "ON"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

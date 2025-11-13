@@ -5,16 +5,28 @@ import { useRouter } from 'vue-router';
 import AppConfigurator from './AppConfigurator.vue';
 import { useWebSocketService } from '@/service/WebsocketService.js';
 import Tag from 'primevue/tag';
+import { useI18n } from 'vue-i18n';
 
 // 🧩 layout + router
 const { toggleMenu, toggleDarkMode, isDarkTheme } = useLayout();
 const router = useRouter();
+const { locale } = useI18n();
 
 // 🔌 dane z WebSocketService
-const { devices } = useWebSocketService();
+const { ws, devices } = useWebSocketService();
 
-// 🔔 Dropdown (Messages)
 const showMessages = ref(false);
+
+// Dostępne języki
+const languages = [
+    { label: '🇵🇱 Polski', value: 'pl' },
+    { label: '🇬🇧 English', value: 'en' }
+];
+
+const changeLang = (lang) => {
+    locale.value = lang;
+    localStorage.setItem('lang', lang);
+};
 
 // 📊 urządzenia z nieaktywnymi lampami
 const errorDevices = computed(() => {
@@ -22,21 +34,40 @@ const errorDevices = computed(() => {
         .map(dev => {
             const offLamps = Object.entries(dev.lamps || {})
                 .filter(([_, lamp]) => lamp.on === false || lamp.raw?.turn === 0 || lamp.raw?.turn === '0')
-                .map(([id, lamp]) => ({
-                    id,
-                    ...lamp
-                }));
+                .map(([id, lamp]) => ({ id, ...lamp }));
             return offLamps.length ? { ...dev, offLamps } : null;
         })
         .filter(Boolean);
 });
 
-// 🚪 Wylogowanie
+// 🚪 Wylogowanie — pełne czyszczenie
 const logout = () => {
-    localStorage.removeItem('isLoggedIn');
-    router.push('/auth/login');
+    try {
+        // 🔌 Zamknięcie połączenia WebSocket (jeśli istnieje)
+        if (ws.value && ws.value.readyState === WebSocket.OPEN) {
+            console.log('🔌 Closing WebSocket connection...');
+            ws.value.close(1000, 'User logout');
+        }
+
+        // 🧹 Wyczyszczenie wszystkich danych z localStorage
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('role');
+        localStorage.removeItem('username');
+
+        // 🧼 Wyczyszczenie reaktywnego stanu urządzeń
+        Object.keys(devices).forEach(key => delete devices[key]);
+
+        console.log('✅ User logged out and state cleared.');
+
+        // 🔁 Przekierowanie na login
+        router.push('/auth/login');
+    } catch (err) {
+        console.error('❌ Logout error:', err);
+        router.push('/auth/login');
+    }
 };
 </script>
+
 
 <template>
     <div class="layout-topbar">
@@ -54,6 +85,19 @@ const logout = () => {
         </div>
 
         <div class="layout-topbar-actions">
+            <!-- 🌐 Przełącznik języka -->
+            <div class="relative flex items-center">
+                <select
+                    v-model="locale"
+                    @change="changeLang(locale)"
+                    class="bg-transparent text-sm border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1 cursor-pointer focus:outline-none text-gray-700 dark:text-gray-300 hover:bg-surface-100 dark:hover:bg-surface-800 transition"
+                >
+                    <option v-for="lang in languages" :key="lang.value" :value="lang.value">
+                        {{ lang.label }}
+                    </option>
+                </select>
+            </div>
+
             <div class="layout-config-menu">
                 <button type="button" class="layout-topbar-action" @click="toggleDarkMode">
                     <i :class="['pi', { 'pi-moon': isDarkTheme, 'pi-sun': !isDarkTheme }]"></i>
@@ -201,6 +245,6 @@ const logout = () => {
 .layout-topbar,
 .layout-topbar-action {
     overflow: visible !important;
-    z-index: 9999 !important;
+    z-index: 999 !important;
 }
 </style>
