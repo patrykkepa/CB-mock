@@ -20,7 +20,7 @@ const emit = defineEmits(['toggle-channel', 'back']);
 
 <template>
     <div class="space-y-4">
-        <!-- 🔹 Nagłówek stacji -->
+        <!-- Nagłówek stacji -->
         <div class="flex items-center justify-between mb-3">
             <div>
                 <h3 class="text-lg font-semibold">
@@ -39,7 +39,7 @@ const emit = defineEmits(['toggle-channel', 'back']);
             />
         </div>
 
-        <!-- ⚙️ Dwukolumnowy układ (masonry) -->
+        <!-- Dwukolumnowy układ (masonry) -->
         <div class="masonry columns-1 md:columns-2">
             <div
                 v-for="ch in channels"
@@ -49,13 +49,13 @@ const emit = defineEmits(['toggle-channel', 'back']);
                 <Card
                     class="border border-surface-200 dark:border-surface-700 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 bg-surface-0 dark:bg-surface-900/70"
                 >
-                    <!-- 🧩 Nagłówek kanału -->
+                    <!-- Nagłówek kanału -->
                     <template #title>
                         <div
                             class="flex justify-between items-start cursor-pointer select-none p-3"
                             @click="emit('toggle-channel', ch.id)"
                         >
-                            <!-- 🔹 Lewa sekcja -->
+                            <!-- Lewa sekcja -->
                             <div class="flex flex-col gap-2">
                                 <div class="flex items-center gap-2">
                                     <i class="pi pi-sliders-h text-primary-500 text-base"></i>
@@ -84,7 +84,7 @@ const emit = defineEmits(['toggle-channel', 'back']);
                                 </div>
                             </div>
 
-                            <!-- 🔸 Prawa sekcja -->
+                            <!-- Prawa sekcja -->
                             <div class="flex flex-col items-end gap-2 mt-1">
                                 <Tag
                                     :value="`FW ${ch.firmware ?? 'N/A'}`"
@@ -99,7 +99,7 @@ const emit = defineEmits(['toggle-channel', 'back']);
                         </div>
                     </template>
 
-                    <!-- 💡 Rozwijana tabela lamp -->
+                    <!-- Rozwijana tabela lamp -->
                     <template #content>
                         <transition name="fade">
                             <div
@@ -123,7 +123,7 @@ const emit = defineEmits(['toggle-channel', 'back']);
                         </transition>
                     </template>
 
-                    <!-- 🔘 Footer -->
+                    <!-- Footer -->
                     <template #footer>
                         <div class="flex justify-end pt-3 border-t border-gray-200 dark:border-gray-700 mt-2">
                             <Button
@@ -143,7 +143,6 @@ const emit = defineEmits(['toggle-channel', 'back']);
 </template>
 
 <style scoped>
-/* Dwukolumnowy masonry layout */
 .masonry {
     column-gap: 1rem;
 }
@@ -151,8 +150,6 @@ const emit = defineEmits(['toggle-channel', 'back']);
     break-inside: avoid;
     margin-bottom: 1rem;
 }
-
-/* Animacja rozwijania */
 .fade-enter-active,
 .fade-leave-active {
     transition: all 0.25s ease;

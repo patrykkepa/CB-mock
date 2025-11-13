@@ -14,7 +14,7 @@ const props = defineProps({
 
 const emit = defineEmits(['select-building', 'set-subview']);
 
-// 📊 Statystyki
+// Statystyki
 function buildingStats(building) {
     if (!building?.stations) return { stations: 0, channels: 0, lampsOn: 0, lampsTotal: 0 };
     let stations = building.stations.length;
@@ -33,7 +33,7 @@ function buildingStats(building) {
     return { stations, channels, lampsOn, lampsTotal };
 }
 
-// 🧭 Dostępne sekcje
+// Dostępne sekcje
 const sections = ref([
     { key: 'overview', label: 'Overview', icon: 'pi pi-chart-bar' },
     { key: 'stations', label: 'Stations', icon: 'pi pi-server' },
@@ -48,7 +48,7 @@ const sections = ref([
     <aside
         class="col-span-3 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-surface-800 p-4 flex flex-col"
     >
-        <!-- 🔹 Nagłówek -->
+        <!-- Nagłówek -->
         <div class="flex items-center justify-between mb-4">
             <h3 class="text-lg font-semibold flex items-center gap-2 text-gray-800 dark:text-gray-100">
                 <i class="pi pi-building text-primary-500"></i>
@@ -63,7 +63,7 @@ const sections = ref([
             />
         </div>
 
-        <!-- 📍 Lista budynków -->
+        <!-- Lista budynków -->
         <div class="flex-1 overflow-y-auto space-y-3 pr-1">
             <div
                 v-for="bld in buildings"
@@ -75,7 +75,7 @@ const sections = ref([
             : 'border-gray-100 dark:border-gray-700 hover:bg-gray-50/80 dark:hover:bg-surface-700'
         ]"
             >
-                <!-- 🏢 Główna karta -->
+                <!-- Główna karta -->
                 <div
                     class="p-3 flex justify-between items-start"
                     @click="$emit('select-building', bld)"
@@ -97,7 +97,7 @@ const sections = ref([
                     />
                 </div>
 
-                <!-- 📑 Lista sekcji -->
+                <!-- Lista sekcji -->
                 <transition name="fade">
                     <div
                         v-if="selectedBuilding?.id === bld.id"
@@ -133,8 +133,6 @@ const sections = ref([
     opacity: 0;
     transform: translateY(6px);
 }
-
-/* Scrollbar ładniejszy */
 aside::-webkit-scrollbar {
     width: 8px;
 }

@@ -12,7 +12,7 @@ const hoveredBuilding = ref(null);
 const mapImage = ref(null);
 const tempMarker = ref(null);
 
-// kliknięcie na mapę (np. dodawanie nowych lokalizacji)
+// kliknięcie na mapę
 function handleMapClick(event) {
     const rect = mapImage.value.getBoundingClientRect();
     const x = ((event.clientX - rect.left) / rect.width) * 100;
@@ -37,7 +37,7 @@ function handleMapClick(event) {
                 ref="mapImage"
             />
 
-            <!-- 🔵 Markery -->
+            <!-- Markery -->
             <div
                 v-for="bld in buildings"
                 :key="bld.id"

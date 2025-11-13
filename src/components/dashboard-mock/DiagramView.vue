@@ -23,7 +23,7 @@ const { fitView } = useVueFlow()
 
 // --- modal ---
 const showDialog = ref(false)
-const dialogData = ref(null) // { type: 'building'|'station'|'controller'|'lamp', title, meta: {...} }
+const dialogData = ref(null)
 
 function nodeStyle(color) {
     return {
@@ -129,7 +129,7 @@ function handleNodeClick({ node }) {
         return
     }
 
-    // 🏢 Budynek
+    // Budynek
     if (node.id.startsWith('building-')) {
         const b = props.building
         dialogData.value = {

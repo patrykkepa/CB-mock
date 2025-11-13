@@ -1,6 +1,5 @@
 <script setup>
 import Card from 'primevue/card';
-import Tag from 'primevue/tag';
 import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 </script>

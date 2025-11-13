@@ -16,7 +16,7 @@ const props = defineProps({
 const filterZeroChannels = ref(false);
 const filterInactiveLamps = ref(false);
 
-// 📊 Statystyki stacji
+// Statystyki stacji
 function stationStats(station) {
     if (!station?.controllers) return { channels: 0, lampsOn: 0, lampsOff: 0, lampsTotal: 0 };
     let channels = station.controllers.length;
@@ -30,7 +30,7 @@ function stationStats(station) {
     return { channels, lampsOn, lampsOff, lampsTotal };
 }
 
-// ✅ Flagi wiersza
+// Flagi wiersza
 function rowFlags(st) {
     const s = stationStats(st);
     const noChannels = s.channels === 0;
@@ -44,7 +44,7 @@ function rowClass(st) {
     return '';
 }
 
-// 🔽 Filtrowanie
+// Filtrowanie
 const filteredStations = computed(() => {
     return props.stations.filter(st => {
         const { noChannels, someLampsOff } = rowFlags(st);
@@ -57,9 +57,9 @@ const filteredStations = computed(() => {
 
 <template>
     <div class="space-y-4 mt-6">
-        <!-- 🔎 Legenda i filtry -->
+        <!-- Legenda i filtry -->
         <div class="flex flex-wrap items-center gap-4 text-xs text-gray-600 dark:text-gray-300 select-none">
-            <!-- 🔴 0 kanałów -->
+            <!-- 0 kanałów -->
             <div
                 class="inline-flex items-center gap-2 cursor-pointer transition-transform hover:scale-105"
                 :class="{ 'opacity-100': filterZeroChannels, 'opacity-60': !filterZeroChannels }"
@@ -72,7 +72,7 @@ const filteredStations = computed(() => {
                 <span class="font-medium">0 {{ t('dashboard.channels') }}</span>
             </div>
 
-            <!-- 💡 Nieaktywne lampy -->
+            <!-- Nieaktywne lampy -->
             <div
                 class="inline-flex items-center gap-2 cursor-pointer transition-transform hover:scale-105"
                 :class="{ 'opacity-100': filterInactiveLamps, 'opacity-60': !filterInactiveLamps }"
@@ -86,7 +86,7 @@ const filteredStations = computed(() => {
             </div>
         </div>
 
-        <!-- ⚙️ Tabela -->
+        <!-- Tabela -->
         <div
             class="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white/70 dark:bg-surface-800/50"
         >
@@ -174,7 +174,6 @@ th {
     font-size: 0.85rem;
 }
 
-/* 🔴 Pasek po lewej stronie */
 .border-strong {
     border-left: 6px solid #ef4444; /* red-500 */
 }

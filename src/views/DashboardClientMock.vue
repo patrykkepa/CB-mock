@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
-import Tag from 'primevue/tag';
 import SidebarLocations from '@/components/dashboard-mock/SidebarLocations.vue';
 
 import BuildingView from '@/components/dashboard-mock/BuildingView.vue';
@@ -24,7 +23,7 @@ onMounted(async () => {
     try {
         const res = await axios.get('/demo/data/mock-backend-szpital.json');
         building.value = res.data;
-        selectedBuilding.value = res.data; // ✅ ważne!
+        selectedBuilding.value = res.data;
     } catch (err) {
         console.error('❌ Błąd ładowania mocka budynku:', err);
     } finally {
@@ -81,7 +80,7 @@ function buildingStats(bld) {
 
 <template>
     <div class="h-[calc(100vh-0rem)] grid grid-cols-12 bg-gray-50 dark:bg-surface-900">
-        <!-- 🧭 Sidebar -->
+        <!-- Sidebar -->
         <SidebarLocations
             v-if="selectedBuilding && !loading"
             :buildings="[building]"
@@ -91,11 +90,11 @@ function buildingStats(bld) {
             @set-subview="(v) => (activeSubView = v)"
         />
 
-        <!-- 🏢 Main Panel -->
+        <!-- Main Panel -->
         <main class="col-span-9 p-6 overflow-y-auto relative">
             <transition name="fade" mode="out-in">
                 <div :key="selectedStation ? 'channels' : activeSubView">
-                    <!-- 🏙️ Overview -->
+                    <!-- Overview -->
                     <BuildingView
                         v-if="building && activeSubView === 'overview' && !selectedStation && !loading"
                         :building="building"
@@ -104,7 +103,7 @@ function buildingStats(bld) {
                         :selectStation="(st) => (selectedStation = st)"
                     />
 
-                    <!-- 📡 Stations -->
+                    <!-- Stations -->
                     <StationsTable
                         v-else-if="building && activeSubView === 'stations' && !selectedStation && !loading"
                         :stations="stations"
@@ -112,7 +111,7 @@ function buildingStats(bld) {
                         :selectStation="(st) => (selectedStation = st)"
                     />
 
-                    <!-- ⚙️ Channels -->
+                    <!-- Channels -->
                     <StationChannelsView
                         v-else-if="selectedStation && !loading"
                         :station="selectedStation"
@@ -124,19 +123,19 @@ function buildingStats(bld) {
                         @back="resetToStations"
                     />
 
-                    <!-- 🧪 Tests -->
+                    <!-- Tests -->
                     <TestsView
                         v-else-if="building && activeSubView === 'tests' && !selectedStation && !loading"
                         :building="building"
                     />
 
-                    <!-- ⚡ Power -->
+                    <!-- Power -->
                     <PowerView
                         v-else-if="building && activeSubView === 'power' && !selectedStation && !loading"
                         :building="building"
                     />
 
-                    <!-- 🕒 History -->
+                    <!-- History -->
                     <HistoryView
                         v-else-if="building && activeSubView === 'history' && !selectedStation && !loading"
                         :building="building"
@@ -144,7 +143,7 @@ function buildingStats(bld) {
                 </div>
             </transition>
 
-            <!-- ⏳ Loading -->
+            <!-- Loading -->
             <div
                 v-if="loading"
                 class="absolute inset-0 flex items-center justify-center bg-white/60 dark:bg-surface-900/60"

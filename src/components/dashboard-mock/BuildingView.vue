@@ -29,7 +29,7 @@ const props = defineProps({
     onBack: { type: Function, default: () => {} }
 });
 
-// 📊 Statystyki budynku
+// Statystyki budynku
 function buildingStats(building) {
     if (!building?.stations) return { stations: 0, channels: 0, lampsOn: 0, lampsTotal: 0 };
     let stations = building.stations.length;
@@ -47,7 +47,7 @@ function buildingStats(building) {
 }
 const stats = computed(() => buildingStats(props.building));
 
-// 📈 Mockowane dane trendów (na wykresach)
+// Mockowane dane trendów (na wykresach)
 const stationsTrend = computed(() => Array(7).fill(stats.value.stations));
 const channelsTrend = computed(() => Array(7).fill(stats.value.channels));
 const chartOptions = (label, color) => ({
@@ -64,7 +64,7 @@ const chartOptions = (label, color) => ({
 
 <template>
     <div class="space-y-6">
-        <!-- 🔹 Nagłówek -->
+        <!-- Nagłówek -->
         <div class="flex justify-between items-start border-b pb-3">
             <div>
                 <h2 class="text-2xl font-semibold text-primary-700 dark:text-primary-300">
@@ -78,7 +78,7 @@ const chartOptions = (label, color) => ({
             </div>
         </div>
 
-        <!-- 📊 KPI Sekcja -->
+        <!-- KPI Sekcja -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card>
                 <template #title>{{ t('dashboard.stations') }}</template>
@@ -116,9 +116,9 @@ const chartOptions = (label, color) => ({
             </Card>
         </div>
 
-        <!-- 🧭 Adres i operator -->
+        <!-- Adres i operator -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- 🏢 Adres -->
+            <!-- Adres -->
             <div class="border border-gray-200 dark:border-gray-700 p-4 rounded-xl bg-white/70 dark:bg-surface-800/50 relative">
                 <div class="flex justify-between items-center mb-2">
                     <h4 class="font-semibold text-primary-600">{{ t('dashboard.address_info') }}</h4>
@@ -131,7 +131,7 @@ const chartOptions = (label, color) => ({
                 <p v-if="building.area_m2"><i class="pi pi-expand mr-2 text-gray-400"></i>{{ building.area_m2 }} m²</p>
             </div>
 
-            <!-- 👤 Operator -->
+            <!-- Operator -->
             <div v-if="building.operator"
                  class="border border-gray-200 dark:border-gray-700 p-4 rounded-xl bg-white/70 dark:bg-surface-800/50 relative">
                 <div class="flex justify-between items-center mb-2">
@@ -147,7 +147,7 @@ const chartOptions = (label, color) => ({
             </div>
         </div>
 
-        <!-- 🧮 Pasek testów -->
+        <!-- Pasek testów -->
         <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-4 bg-white/80 dark:bg-surface-800/50 shadow-sm">
             <div class="flex justify-between items-center mb-1">
                 <h4 class="font-semibold text-lg">{{ t('dashboard.tests') || 'Testy funkcjonalne' }}</h4>
@@ -172,10 +172,10 @@ const chartOptions = (label, color) => ({
             </div>
         </div>
 
-        <!-- ⚙️ Dodatkowe kafelki -->
+        <!-- Dodatkowe kafelki -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-            <!-- 📊 Power Summary -->
+            <!-- Power Summary -->
             <Card class="bg-gradient-to-br from-amber-50 to-yellow-100 dark:from-yellow-900/30 dark:to-surface-800/60 shadow-sm">
                 <template #title>
                     <div class="flex items-center gap-2 text-amber-600 dark:text-amber-400">
@@ -201,7 +201,7 @@ const chartOptions = (label, color) => ({
                 </template>
             </Card>
 
-            <!-- 📥 Download stats -->
+            <!-- Download stats -->
             <Card class="flex flex-col justify-center items-center text-center bg-white/70 dark:bg-surface-800/50 shadow-sm border border-gray-200 dark:border-gray-700">
                 <template #title>
                     <div class="flex items-center justify-center gap-2 text-primary-600 dark:text-primary-400">

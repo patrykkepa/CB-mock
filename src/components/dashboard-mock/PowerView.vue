@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import Card from 'primevue/card'
 import { Line } from 'vue-chartjs'
 import { useI18n } from 'vue-i18n'
@@ -19,7 +19,7 @@ ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Tooltip,
 
 const { t } = useI18n()
 
-// 🔋 Mock danych trendu mocy
+// Mock danych trendu mocy
 const labels = ref(['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'])
 const powerData = ref([250, 280, 310, 400, 460, 520, 480, 350])
 
@@ -72,7 +72,7 @@ const chartOptions = {
             {{ t('dashboard.power') || 'Power Consumption' }}
         </h2>
 
-        <!-- 🔹 Kafle z podsumowaniem -->
+        <!-- Kafle z podsumowaniem -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card>
                 <template #title>Total Power Usage</template>
@@ -99,7 +99,7 @@ const chartOptions = {
             </Card>
         </div>
 
-        <!-- 📊 Wykres trendu mocy -->
+        <!-- Wykres trendu mocy -->
         <Card>
             <template #title>Daily Power Trend</template>
             <template #content>

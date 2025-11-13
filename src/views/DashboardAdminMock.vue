@@ -1,38 +1,37 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
-import Tag from 'primevue/tag';
-import Button from 'primevue/button';
-import BuildingView from '@/components/dashboard-mock/BuildingView.vue';
-import StationsTable from '@/components/dashboard-mock/StationsTable.vue';
-import StationChannelsView from '@/components/dashboard-mock/StationChannelsView.vue';
-import EmptyMapView from '@/components/dashboard-mock/EmptyMapView.vue';
-import TestsView from '@/components/dashboard-mock/TestsView.vue';
-import PowerView from '@/components/dashboard-mock/PowerView.vue';
-import HistoryView from '@/components/dashboard-mock/HistoryView.vue';
-import DiagramView from '@/components/dashboard-mock/DiagramView.vue';
+import { computed, ref, onMounted } from 'vue'
+import Tag from 'primevue/tag'
+import { initMockServer, mockServer } from '@/service/MockServer'
+import BuildingView from '@/components/dashboard-mock/BuildingView.vue'
+import StationsTable from '@/components/dashboard-mock/StationsTable.vue'
+import StationChannelsView from '@/components/dashboard-mock/StationChannelsView.vue'
+import EmptyMapView from '@/components/dashboard-mock/EmptyMapView.vue'
+import TestsView from '@/components/dashboard-mock/TestsView.vue'
+import PowerView from '@/components/dashboard-mock/PowerView.vue'
+import HistoryView from '@/components/dashboard-mock/HistoryView.vue'
+import DiagramView from '@/components/dashboard-mock/DiagramView.vue'
+import { useI18n } from 'vue-i18n'
 
-import { useI18n } from 'vue-i18n';
+const { t } = useI18n()
 
-const { t } = useI18n();
+const buildings = computed(() => mockServer.getBuildings())
 
-const buildings = ref([]);
-const selectedBuilding = ref(null);
-const selectedStation = ref(null);
-const expandedChannel = ref(null);
-const loading = ref(true);
-const activeSubView = ref('overview'); // "overview" | "stations"
+const selectedBuilding = ref(null)
+const selectedStation = ref(null)
+const expandedChannel = ref(null)
+const loading = ref(true)
+const activeSubView = ref('overview')
 
 onMounted(async () => {
+    loading.value = true
     try {
-        const res = await axios.get('/demo/data/mock-backend-v2.json');
-        buildings.value = res.data.buildings || [];
+        await initMockServer()
     } catch (err) {
-        console.error('❌ Błąd wczytywania danych:', err);
+        console.error('❌ Błąd inicjalizacji mock serwera:', err)
     } finally {
-        loading.value = false;
+        loading.value = false
     }
-});
+})
 
 function buildingStats(building) {
     if (!building?.stations) return { stations: 0, channels: 0, lampsOn: 0, lampsTotal: 0 };
@@ -91,7 +90,7 @@ function selectBuilding(bld) {
 
 <template>
     <div class="flex flex-col h-[calc(100vh-0rem)] bg-gray-50 dark:bg-surface-900">
-        <!-- 🌟 Pasek tytułowy -->
+        <!-- Pasek tytułowy -->
         <header
             class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-surface-800 flex items-center justify-between"
         >
@@ -102,7 +101,7 @@ function selectBuilding(bld) {
         </header>
 
         <div class="grid grid-cols-12 flex-1 overflow-hidden">
-            <!-- 🧭 Sidebar-->
+            <!-- Sidebar-->
             <SidebarLocations
                 :buildings="buildings"
                 :selectedBuilding="selectedBuilding"
@@ -111,10 +110,10 @@ function selectBuilding(bld) {
                 @set-subview="(v) => (activeSubView = v)"
             />
 
-            <!-- 🏢 Main panel -->
+            <!-- Main panel -->
             <main class="col-span-9 p-6 overflow-y-auto relative">
                 <transition name="fade" mode="out-in">
-                    <!-- 🌍 Pusty widok -->
+                    <!-- Pusty widok -->
                     <EmptyMapView
                         v-if="!selectedBuilding && !selectedStation"
                         key="empty"
@@ -122,29 +121,29 @@ function selectBuilding(bld) {
                         @select-building="selectBuilding"
                     />
 
-                    <!-- 🏙️ Widok informacji o budynku -->
+                    <!-- Widok informacji o budynku -->
                     <BuildingView
                         v-else-if="selectedBuilding && activeSubView === 'overview' && !selectedStation"
                         :key="'overview-' + selectedBuilding.id"
-                    :building="selectedBuilding"
-                    :stations="selectedBuilding.stations || []"
-                    :formatUptime="formatUptime"
-                    :selectStation="(st) => (selectedStation = st)"
-                    :onControl="handleControl"
-                    :onBack="resetToBuildings"
+                        :building="selectedBuilding"
+                        :stations="selectedBuilding.stations || []"
+                        :formatUptime="formatUptime"
+                        :selectStation="(st) => (selectedStation = st)"
+                        :onControl="handleControl"
+                        :onBack="resetToBuildings"
                     />
 
-                    <!-- 🧩 Widok stacji -->
+                    <!-- Widok stacji -->
                     <StationsTable
                         v-else-if="selectedBuilding && activeSubView === 'stations' && !selectedStation"
                         :key="'stations-' + selectedBuilding.id"
-                    :stations="selectedBuilding.stations || []"
-                    :formatUptime="formatUptime"
-                    :selectStation="(st) => (selectedStation = st)"
-                    :onControl="handleControl"
+                        :stations="selectedBuilding.stations || []"
+                        :formatUptime="formatUptime"
+                        :selectStation="(st) => (selectedStation = st)"
+                        :onControl="handleControl"
                     />
 
-                    <!-- ⚙️ Widok kanałów -->
+                    <!-- Widok kanałów -->
                     <StationChannelsView
                         v-else-if="selectedStation"
                         key="channels"
@@ -157,21 +156,21 @@ function selectBuilding(bld) {
                         @back="resetToStations"
                     />
 
-                    <!-- ⚙️ Tests -->
+                    <!-- Tests -->
                     <TestsView
                         v-else-if="selectedBuilding && activeSubView === 'tests' && !selectedStation"
                         :key="'tests-' + selectedBuilding.id"
                         :building="selectedBuilding"
                     />
 
-                    <!-- ⚡ Power -->
+                    <!-- Power -->
                     <PowerView
                         v-else-if="selectedBuilding && activeSubView === 'power' && !selectedStation"
                         :key="'power-' + selectedBuilding.id"
                         :building="selectedBuilding"
                     />
 
-                    <!-- 🕒 History -->
+                    <!-- History -->
                     <HistoryView
                         v-else-if="selectedBuilding && activeSubView === 'history' && !selectedStation"
                         :key="'history-' + selectedBuilding.id"
@@ -187,7 +186,7 @@ function selectBuilding(bld) {
 
                 </transition>
 
-                <!-- ⏳ Ładowanie -->
+                <!-- Ładowanie -->
                 <div
                     v-if="loading"
                     class="absolute inset-0 flex items-center justify-center bg-white/60 dark:bg-surface-900/60"
