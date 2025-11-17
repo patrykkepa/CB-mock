@@ -4,7 +4,7 @@ const layoutConfig = reactive({
     preset: 'Aura',
     primary: 'emerald',
     surface: null,
-    darkTheme: false,
+    darkTheme: true,
     menuMode: 'static'
 });
 
@@ -17,6 +17,19 @@ const layoutState = reactive({
     menuHoverActive: false,
     activeMenuItem: null
 });
+
+if (typeof window !== 'undefined') {
+    const saved = localStorage.getItem('app-dark-theme');
+    if (saved === 'true') {
+        layoutConfig.darkTheme = true;
+    } else if (saved === 'false') {
+        layoutConfig.darkTheme = false;
+    }
+
+    if (layoutConfig.darkTheme) {
+        document.documentElement.classList.add('app-dark');
+    }
+}
 
 export function useLayout() {
     const setActiveMenuItem = (item) => {
@@ -36,7 +49,9 @@ export function useLayout() {
     const executeDarkModeToggle = () => {
         layoutConfig.darkTheme = !layoutConfig.darkTheme;
         document.documentElement.classList.toggle('app-dark');
+        localStorage.setItem('app-dark-theme', layoutConfig.darkTheme ? 'true' : 'false');
     };
+
 
     const toggleMenu = () => {
         if (layoutConfig.menuMode === 'overlay') {
