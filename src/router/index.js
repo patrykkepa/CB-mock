@@ -19,6 +19,11 @@ const router = createRouter({
                     component: () => import('@/views/DashboardMockWrapper.vue')
                 },
                 {
+                    path: '/dashboard-mock/:buildingId?',
+                    name: 'dashboard-mock',
+                    component: () => import('@/views/DashboardMockWrapper.vue')
+                },
+                {
                     path: '/uikit/formlayout',
                     name: 'formlayout',
                     component: () => import('@/views/uikit/FormLayout.vue')

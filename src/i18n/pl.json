@@ -32,6 +32,7 @@
         "time": "Czas",
         "value": "Wartość",
         "locations": "Lokalizacje",
+        "location": "Lokalizacja",
         "address_info": "Informacje adresowe",
         "stations_list": "Lista stacji",
         "select_location_to_view": "Wybierz lokalizacje",
@@ -48,7 +49,11 @@
         "total_consumption": "Całkowite zużycie",
         "avg_load": "Średnie obciążenie",
         "max_load": "Maksymalne obciążenie",
-        "status": "Status"
+        "status": "Status",
+        "building_overview": "Overview",
+        "last_test_run": "Ostatni test",
+        "power": "Zasilanie",
+        "history": "Historia"
     },
     "station": {
         "channels_of_station": "Kanały stacji",

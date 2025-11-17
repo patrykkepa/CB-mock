@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
-import SidebarLocations from '@/components/dashboard-mock/SidebarLocations.vue';
+import SidebarLocation from '@/components/dashboard-mock/SidebarLocation.vue';
 
 import BuildingView from '@/components/dashboard-mock/BuildingView.vue';
 import StationsTable from '@/components/dashboard-mock/StationsTable.vue';
@@ -81,7 +81,7 @@ function buildingStats(bld) {
 <template>
     <div class="h-[calc(100vh-0rem)] grid grid-cols-12 bg-gray-50 dark:bg-surface-900">
         <!-- Sidebar -->
-        <SidebarLocations
+        <SidebarLocation
             v-if="selectedBuilding && !loading"
             :buildings="[building]"
             :selectedBuilding="selectedBuilding"
