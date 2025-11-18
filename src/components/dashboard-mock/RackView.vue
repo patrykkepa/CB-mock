@@ -1,6 +1,8 @@
 <script setup>
 import { ref, computed } from 'vue'
 import Dialog from 'primevue/dialog'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 const props = defineProps({
     building: { type: Object, required: true },
@@ -90,8 +92,12 @@ function goToChannel(station, controller) {
 
 <template>
     <div class="flex flex-col gap-4 h-full">
-        <div class="rack-backplane mb-4">
-            <div class="rack-title">Rack View</div>
+        <!-- HEADER (Rack-style) -->
+        <div class="header">
+            <div class="header-title">
+                <i class="pi pi-server text-black-500 mr-2"></i>
+                {{ t('dashboard.rack')}}
+            </div>
         </div>
 
         <div class="flex-1 overflow-y-auto py-2">
@@ -722,40 +728,40 @@ function goToChannel(station, controller) {
     filter: brightness(1.05);
     transform: translateY(-0.5px);
 }
-.rack-title {
-    font-size: 17px;
+/* ============================================================
+   HEADER — same style as Rack View
+============================================================ */
+.header {
+    padding: 14px 18px;
+    border-radius: 10px;
+
+    background: #e7e8eb;
+    border: 1px solid #c2c4c7;
+
+    box-shadow:
+        inset 0 0 1px rgba(255,255,255,0.7),
+        0 1px 2px rgba(0,0,0,0.07);
+}
+
+.app-dark .header {
+    background: #1b1d1f;
+    border-color: #2d2f31;
+    box-shadow:
+        inset 0 0 1px rgba(255,255,255,0.05),
+        0 1px 3px rgba(0,0,0,0.7);
+}
+
+.header-title {
+    font-size: 15px;
     font-weight: 600;
-    letter-spacing: 0.5px;
-
-    color: #4b4f55;
-    text-shadow:
-        1px 1px 1px rgba(255,255,255,0.9),
-        -1px -1px 2px rgba(0,0,0,0.08);
+    letter-spacing: 0.02em;
+    color: #373a40;
+    display: flex;
+    align-items: center;
 }
 
-.app-dark .rack-title {
-    color: #9ea2a8;
-    text-shadow:
-        1px 1px 2px rgba(0,0,0,0.8),
-        -1px -1px 1px rgba(255,255,255,0.05);
-}
-/* INDUSTRIAL BACKPLANE BACKGROUND */
-.rack-backplane {
-    background: linear-gradient(180deg, #dcdde0, #c9cbcf);
-    border: 1px solid #b5b6b9;
-    border-radius: 8px;
-    padding: 18px 20px;
-    box-shadow:
-        inset 0 0 4px rgba(255,255,255,0.7),
-        inset 0 0 12px rgba(0,0,0,0.1);
-}
-
-.app-dark .rack-backplane {
-    background: linear-gradient(180deg, #1c1e21, #17191c);
-    border-color: #2b2d2f;
-    box-shadow:
-        inset 0 0 3px rgba(255,255,255,0.04),
-        inset 0 0 10px rgba(0,0,0,0.35);
+.app-dark .header-title {
+    color: #e5e7eb;
 }
 
 </style>

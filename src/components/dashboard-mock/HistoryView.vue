@@ -17,9 +17,9 @@ const history = ref([
     <div class="history-industrial space-y-6">
 
         <!-- HEADER (Rack-style) -->
-        <div class="history-header">
-            <div class="history-header-title">
-                <i class="pi pi-clock text-blue-500 mr-2"></i>
+        <div class="header">
+            <div class="header-title">
+                <i class="pi pi-clock text-black-500 mr-2"></i>
                 {{ t('dashboard.history') || 'Event History' }}
             </div>
         </div>
@@ -53,7 +53,7 @@ const history = ref([
 /* ============================================================
    HEADER — same style as Rack View
 ============================================================ */
-.history-header {
+.header {
     padding: 14px 18px;
     border-radius: 10px;
 
@@ -65,7 +65,7 @@ const history = ref([
         0 1px 2px rgba(0,0,0,0.07);
 }
 
-.app-dark .history-header {
+.app-dark .header {
     background: #1b1d1f;
     border-color: #2d2f31;
     box-shadow:
@@ -73,7 +73,7 @@ const history = ref([
         0 1px 3px rgba(0,0,0,0.7);
 }
 
-.history-header-title {
+.header-title {
     font-size: 15px;
     font-weight: 600;
     letter-spacing: 0.02em;
@@ -82,7 +82,7 @@ const history = ref([
     align-items: center;
 }
 
-.app-dark .history-header-title {
+.app-dark .header-title {
     color: #e5e7eb;
 }
 

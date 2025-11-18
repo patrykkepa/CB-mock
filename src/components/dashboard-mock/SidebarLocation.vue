@@ -16,7 +16,6 @@ watch(collapsed, val => {
 const sections = [
     { key: 'overview', label: 'Overview', icon: 'pi pi-chart-bar' },
     { key: 'rack', label: 'Rack', icon: 'pi pi-server' },
-    // { key: 'stations', label: 'Stations', icon: 'pi pi-server' },
     { key: 'tests', label: 'Tests', icon: 'pi pi-check-circle' },
     { key: 'power', label: 'Power', icon: 'pi pi-bolt' },
     { key: 'history', label: 'History', icon: 'pi pi-clock' },
@@ -37,22 +36,13 @@ const sections = [
             </button>
         </div>
 
-        <!-- MAIN MENU -->
+        <!-- MENU -->
         <div class="flex-1 flex flex-col gap-1 px-3 pb-4 overflow-y-auto">
+            <div v-for="section in sections" :key="section.key" class="relative group">
 
-            <div
-                v-for="section in sections"
-                :key="section.key"
-                class="relative group"
-            >
+                <!-- ACTIVE LED -->
+                <div v-if="props.activeSubView === section.key" class="active-led"></div>
 
-                <!-- Left LED strip -->
-                <div
-                    v-if="props.activeSubView === section.key"
-                    class="active-led"
-                ></div>
-
-                <!-- Module -->
                 <button
                     class="industrial-module"
                     :class="[
@@ -61,36 +51,27 @@ const sections = [
                     ]"
                     @click="$emit('set-subview', section.key)"
                 >
-                    <i :class="section.icon" class="icon"></i>
+                    <i :class="section.icon" class="icon" />
 
                     <span v-if="!collapsed" class="label">
                         {{ section.label }}
                     </span>
                 </button>
 
-                <!-- Tooltip -->
-                <div
-                    v-if="collapsed"
-                    class="tooltip"
-                >
+                <!-- TOOLTIP -->
+                <div v-if="collapsed" class="tooltip">
                     {{ section.label }}
                 </div>
-
             </div>
-
         </div>
 
-        <!-- BOTTOM -->
         <div class="industrial-bottom"></div>
-
     </aside>
 </template>
 
-<style scoped>
 
-/* ------------------------------------
-   SIDEBAR BASE
------------------------------------- */
+<style scoped>
+/* BASE LAYOUT */
 
 .sidebar-industrial {
     background: linear-gradient(180deg, #e4e5e7, #d8d9db);
@@ -102,26 +83,25 @@ const sections = [
     border-right-color: #2d2f31;
 }
 
-/* ------------------------------------
-   TOP BAR
------------------------------------- */
-
 .industrial-top {
     padding: 10px;
     border-bottom: 1px solid rgba(0,0,0,0.08);
+    margin-bottom: 10px;
 }
 
 .app-dark .industrial-top {
     border-bottom-color: rgba(255,255,255,0.06);
 }
 
-/* Collapse button */
+/* BUTTON COLLAPSE */
+
 .collapse-btn {
     padding: 8px 10px;
     border-radius: 6px;
     background: rgba(0,0,0,0.05);
     border: 1px solid rgba(0,0,0,0.15);
     color: #333;
+    transition: 0.2s;
 }
 
 .collapse-btn:hover {
@@ -138,108 +118,93 @@ const sections = [
     background: rgba(255,255,255,0.15);
 }
 
-/* ------------------------------------
-   INDUSTRIAL MODULES
------------------------------------- */
+/* MODULE BUTTONS */
 
 .industrial-module {
     width: 100%;
     display: flex;
     align-items: center;
-
     padding: 12px;
     border-radius: 6px;
-
-    background: #f6f6f6;
-    border: 1px solid rgba(0,0,0,0.12);
-
-    transition: 0.15s;
+    background: var(--p-surface-100);
+    border: 1px solid var(--p-surface-300);
+    transition: 0.18s ease;
 }
 
 .industrial-module:hover {
-    background: #ececed;
+    background: var(--p-surface-200);
 }
 
 .app-dark .industrial-module {
-    background: #2a2c2f;
-    border-color: rgba(255,255,255,0.08);
+    background: var(--p-surface-800);
+    border-color: var(--p-surface-600);
 }
 
 .app-dark .industrial-module:hover {
-    background: #323437;
+    background: var(--p-surface-700);
 }
 
-/* ACTIVE state (hardware style) */
+/* ACTIVE STATE — DYNAMIC THEME COLORS */
+
 .industrial-module.active {
-    border-color: #4fa3ff;
-    background: linear-gradient(180deg, #ebf5ff, #ddecff);
+    border-color: var(--p-primary-500);
+    background: var(--p-highlight-bg);
+    color: var(--p-highlight-color);
 }
 
 .app-dark .industrial-module.active {
-    border-color: #3b82f6;
-    background: linear-gradient(180deg, #283445, #222c3a);
+    border-color: var(--p-primary-400);
+    background: var(--p-highlight-bg);
+    color: var(--p-highlight-color);
 }
 
-/* ------------------------------------
-   LED STRIP (active indicator)
------------------------------------- */
+/* LED STRIP */
 
 .active-led {
     position: absolute;
     left: -6px;
     top: 0;
     bottom: 0;
-
     width: 4px;
-    background: #4fa3ff;
+    background: var(--p-primary-500);
     border-radius: 4px;
 }
 
 .app-dark .active-led {
-    background: #3b82f6;
+    background: var(--p-primary-300);
 }
 
-/* ------------------------------------
-   ICONS / LABELS
------------------------------------- */
+/* ICONS & LABELS */
 
 .icon {
     font-size: 18px;
-    color: #4a4a4a;
+    color: var(--p-text-color);
 }
 
 .label {
     font-size: 14px;
     white-space: nowrap;
-    color: #333;
+    color: var(--p-text-color);
 }
 
-.app-dark .icon {
-    color: #d4d4d4;
-}
-
+.app-dark .icon,
 .app-dark .label {
-    color: #e5e7eb;
+    color: var(--p-text-color);
 }
 
-/* ------------------------------------
-   TOOLTIP
------------------------------------- */
+/* TOOLTIP */
 
 .tooltip {
     position: absolute;
     left: calc(100% + 10px);
     top: 50%;
     transform: translateY(-50%);
-
     background: #111;
     color: #fff;
     padding: 4px 8px;
     font-size: 12px;
-
     border-radius: 4px;
     pointer-events: none;
-
     opacity: 0;
     transition: 0.12s;
 }
@@ -248,9 +213,7 @@ const sections = [
     opacity: 1;
 }
 
-/* ------------------------------------
-   BOTTOM STRIP
------------------------------------- */
+/* BOTTOM */
 
 .industrial-bottom {
     height: 20px;

@@ -12,7 +12,7 @@ const model = ref([
                 label: 'Dashboard (mock)',
                 icon: 'pi pi-fw pi-desktop',
                 to: '/dashboard-mock',
-                items: [] // 🔹 tu wczytamy budynki dynamicznie
+                items: []
             }
         ]
     },
@@ -46,7 +46,7 @@ onMounted(async () => {
         mockMenu.items = buildings.map(b => ({
             label: b.name,
             icon: 'pi pi-building',
-            to: `/dashboard-mock/${b.id}` // 🔹 routing z id budynku
+            to: `/dashboard-mock/${b.id}`
         }))
     }
 })

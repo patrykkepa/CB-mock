@@ -17,6 +17,8 @@ const props = defineProps({
     building: { type: Object, required: true },
 })
 
+const initialized = ref(false)
+
 const nodes = ref([])
 const edges = ref([])
 const { fitView } = useVueFlow()
@@ -213,51 +215,63 @@ function rebuildGraph(bld) {
     edges.value = tmpEdges
 }
 
-// reaguj na zmianę budynku
 watch(
     () => props.building,
     async (bld) => {
         if (!bld) return
         rebuildGraph(bld)
         await nextTick()
-        fitView({ padding: 0.3 })
+
+        if (!initialized.value) {
+            fitView({ padding: 0.3 })
+            initialized.value = true
+        }
     },
     { immediate: true, deep: true }
 )
 </script>
 
 <template>
-    <div class="diagram-container">
-        <VueFlow
-            v-model:nodes="nodes"
-            v-model:edges="edges"
-            @node-click="handleNodeClick"
-        >
-            <MiniMap nodeColor="rgb(37,99,235)" />
-            <Controls />
-            <Background pattern-color="#e5e7eb" :gap="20" />
-        </VueFlow>
-
-        <!-- Modal szczegółów -->
-        <Dialog v-model:visible="showDialog" modal :style="{ width: '480px' }" :header="t('buttons.details')" dismissableMask>
-            <template #header>
-                <div class="flex items-center gap-2">
-                    <span class="text-lg font-semibold">{{ dialogData?.title }}</span>
-                    <Tag v-if="dialogData?.type" :value="dialogData.type" severity="info" />
-                </div>
-            </template>
-
-            <div v-if="dialogData?.meta" class="space-y-2">
-                <div v-for="(val, key) in dialogData.meta" :key="key" class="flex justify-between text-sm">
-                    <span class="text-gray-500">{{ key }}</span>
-                    <span class="font-medium">{{ val }}</span>
-                </div>
+    <div>
+        <div class="header">
+            <div class="header-title">
+                <i class="pi pi-share-alt text-black-500 mr-2"></i>
+                {{ t('dashboard.diagram')}}
             </div>
+        </div>
 
-            <template #footer>
-                <Button :label="t('buttons.close')" @click="showDialog=false" />
-            </template>
-        </Dialog>
+        <div class="diagram-container">
+            <VueFlow
+                v-model:nodes="nodes"
+                v-model:edges="edges"
+                @node-click="handleNodeClick"
+            >
+                <MiniMap nodeColor="rgb(37,99,235)" />
+                <Controls />
+                <Background pattern-color="#e5e7eb" :gap="20" />
+            </VueFlow>
+
+            <!-- Modal szczegółów -->
+            <Dialog v-model:visible="showDialog" modal :style="{ width: '480px' }" :header="t('buttons.details')" dismissableMask>
+                <template #header>
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg font-semibold">{{ dialogData?.title }}</span>
+                        <Tag v-if="dialogData?.type" :value="dialogData.type" severity="info" />
+                    </div>
+                </template>
+
+                <div v-if="dialogData?.meta" class="space-y-2">
+                    <div v-for="(val, key) in dialogData.meta" :key="key" class="flex justify-between text-sm">
+                        <span class="text-gray-500">{{ key }}</span>
+                        <span class="font-medium">{{ val }}</span>
+                    </div>
+                </div>
+
+                <template #footer>
+                    <Button :label="t('buttons.close')" @click="showDialog=false" />
+                </template>
+            </Dialog>
+        </div>
     </div>
 </template>
 
@@ -268,5 +282,40 @@ watch(
     background-color: #f9fafb;
     border: 1px solid #e5e7eb;
     border-radius: 10px;
+}
+/* ============================================================
+   HEADER — same style as Rack View
+============================================================ */
+.header {
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background: #e7e8eb;
+    border: 1px solid #c2c4c7;
+
+    box-shadow:
+        inset 0 0 1px rgba(255,255,255,0.7),
+        0 1px 2px rgba(0,0,0,0.07);
+}
+
+.app-dark .header {
+    background: #1b1d1f;
+    border-color: #2d2f31;
+    box-shadow:
+        inset 0 0 1px rgba(255,255,255,0.05),
+        0 1px 3px rgba(0,0,0,0.7);
+}
+
+.header-title {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #373a40;
+    display: flex;
+    align-items: center;
+}
+
+.app-dark .header-title {
+    color: #e5e7eb;
 }
 </style>

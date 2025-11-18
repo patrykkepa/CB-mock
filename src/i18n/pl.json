@@ -53,7 +53,9 @@
         "building_overview": "Overview",
         "last_test_run": "Ostatni test",
         "power": "Zasilanie",
-        "history": "Historia"
+        "history": "Historia",
+        "diagram": "Diagram",
+        "rack": "Rack"
     },
     "station": {
         "channels_of_station": "Kanały stacji",

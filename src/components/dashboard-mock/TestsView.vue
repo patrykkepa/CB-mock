@@ -8,9 +8,9 @@ const { t } = useI18n()
     <div class="tests-industrial space-y-6">
 
         <!-- INDUSTRIAL HEADER (rack style) -->
-        <div class="tests-header">
-            <div class="tests-header-title">
-                <i class="pi pi-check-circle mr-2 text-green-500"></i>
+        <div class="header">
+            <div class="header-title">
+                <i class="pi pi-check-circle mr-2 text-black-500"></i>
                 {{ t('dashboard.tests') || 'System Tests' }}
             </div>
         </div>
@@ -76,7 +76,7 @@ const { t } = useI18n()
 /* ============================
    INDUSTRIAL HEADER (Rack style)
 ============================ */
-.tests-header {
+.header {
     padding: 14px 18px;
     border-radius: 10px;
 
@@ -88,7 +88,7 @@ const { t } = useI18n()
         0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
-.app-dark .tests-header {
+.app-dark .header {
     background: #1d1f21;
     border-color: #2d2f31;
 
@@ -97,7 +97,7 @@ const { t } = useI18n()
         0 1px 3px rgba(0, 0, 0, 0.65);
 }
 
-.tests-header-title {
+.header-title {
     font-size: 15px;
     font-weight: 600;
     color: #374151;
@@ -105,7 +105,7 @@ const { t } = useI18n()
     align-items: center;
 }
 
-.app-dark .tests-header-title {
+.app-dark .header-title {
     color: #e5e7eb;
 }
 

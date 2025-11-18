@@ -91,9 +91,12 @@ const chartOptions = (color) => ({
     <div class="building-industrial space-y-6">
 
         <!-- HEADER PANEL -->
-        <div class="bi-header-rack">
-            <div class="bi-header-rack-title">
-                {{ t('dashboard.building_overview') || 'Building overview' }}
+        <div class="header">
+            <div class="header-title">
+                <div>
+                    <i class="pi pi-home mr-2 text-black-500"></i>
+                    {{ t('dashboard.building_overview')}}
+                </div>
                 <span class="bi-header-rack-id">ID: {{ building.id }}</span>
             </div>
 
@@ -315,19 +318,19 @@ const chartOptions = (color) => ({
             <div class="bi-tests-body">
                 <div class="bi-tests-row">
                     <div class="bi-tests-col">
-                        <span class="bi-tests-label ok">
-                            {{ t('dashboard.valid') || 'Valid' }}
-                        </span>
-                        <span class="bi-tests-value ok">97%</span>
-                        <span class="bi-tests-detail">116</span>
-                    </div>
-                    <div class="bi-tests-col">
                         <span class="bi-tests-label error">
                             <i class="pi pi-exclamation-circle mr-1"></i>
                             {{ t('dashboard.invalid') || 'Invalid' }}
                         </span>
                         <span class="bi-tests-value error">3%</span>
                         <span class="bi-tests-detail">3</span>
+                    </div>
+                    <div class="bi-tests-col">
+                        <span class="bi-tests-label ok">
+                            {{ t('dashboard.valid') || 'Valid' }}
+                        </span>
+                        <span class="bi-tests-value ok">97%</span>
+                        <span class="bi-tests-detail">116</span>
                     </div>
                 </div>
 
@@ -840,7 +843,7 @@ const chartOptions = (color) => ({
    Matches .rack-backplane & .rack-title
 ============================================ */
 
-.bi-header-rack {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -858,7 +861,7 @@ const chartOptions = (color) => ({
     margin-bottom: 0.75rem;
 }
 
-.app-dark .bi-header-rack {
+.app-dark .header {
     background: #1d1f21;
     border-color: #2d2f31;
 
@@ -868,7 +871,7 @@ const chartOptions = (color) => ({
 }
 
 /* Title styling like rack-title */
-.bi-header-rack-title {
+.header-title {
     font-size: 15px;
     font-weight: 600;
     color: #374151;
@@ -877,7 +880,7 @@ const chartOptions = (color) => ({
     line-height: 1.2;
 }
 
-.app-dark .bi-header-rack-title {
+.app-dark .header-title {
     color: #e5e7eb;
 }
 

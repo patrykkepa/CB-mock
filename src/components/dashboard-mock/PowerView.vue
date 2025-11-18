@@ -65,8 +65,8 @@ const chartOptions = {
     <div class="power-industrial space-y-8">
 
         <!-- INDUSTRIAL HEADER (Rack-like) -->
-        <div class="power-header">
-            <div class="power-header-title">
+        <div class="header">
+            <div class="header-title">
                 <i class="pi pi-bolt text-yellow-500 mr-2"></i>
                 {{ t('dashboard.power') || 'Power Consumption' }}
             </div>
@@ -136,7 +136,7 @@ h2 i {
 /* ============================
    INDUSTRIAL HEADER (Rack-like)
 ============================ */
-.power-header {
+.header {
     padding: 14px 18px;
     border-radius: 10px;
 
@@ -148,7 +148,7 @@ h2 i {
         0 1px 2px rgba(0,0,0,0.08);
 }
 
-.app-dark .power-header {
+.app-dark .header {
     background: #1b1d1f;
     border-color: #2d2f31;
     box-shadow:
@@ -156,7 +156,7 @@ h2 i {
         0 1px 3px rgba(0,0,0,0.7);
 }
 
-.power-header-title {
+.header-title {
     font-size: 15px;
     font-weight: 600;
     color: #374151;
@@ -164,7 +164,7 @@ h2 i {
     align-items: center;
 }
 
-.app-dark .power-header-title {
+.app-dark .header-title {
     color: #e5e7eb;
 }
 
