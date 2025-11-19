@@ -61,10 +61,10 @@ const mockLogin = async () => {
 
                     <div>
                         <label for="email1" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Login</label>
-                        <InputText id="email1" type="text" placeholder="Login (admin/client)" class="w-full md:w-[30rem] mb-8" v-model="email" />
+                        <InputText id="email1" type="text" placeholder="Login (admin/client)" class="w-full md:w-[30rem] mb-8" v-model="email" @keyup.enter="mockLogin"/>
 
                         <label for="password1" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2">Password</label>
-                        <Password id="password1" v-model="password" placeholder="Password" :toggleMask="true" class="mb-4" fluid :feedback="false" />
+                        <Password id="password1" v-model="password" placeholder="Password" :toggleMask="true" class="mb-4" fluid :feedback="false" @keyup.enter="mockLogin"/>
 
                         <div v-if="errorMessage" class="text-red-500 text-sm mb-3 text-center">{{ errorMessage }}</div>
 
