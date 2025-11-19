@@ -8,7 +8,9 @@ import PrimeVue from 'primevue/config';
 import ConfirmationService from 'primevue/confirmationservice';
 import ToastService from 'primevue/toastservice';
 
+import '@/assets/corex/index.css';
 import '@/assets/styles.scss';
+
 
 const app = createApp(App);
 

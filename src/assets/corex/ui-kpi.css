@@ -1,0 +1,86 @@
+/* -------------------------------------------------------
+   ui-kpi.css
+------------------------------------------------------- */
+/* -------------------------------------------------------
+   KPI GRID
+------------------------------------------------------- */
+.ui-kpi-grid {
+    display: grid;
+    gap: 1.2rem;
+}
+
+/* 2 kolumny od tabletów */
+@media (min-width: 768px) {
+    .ui-kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 4 kolumny od desktopów */
+@media (min-width: 1280px) {
+    .ui-kpi-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.ui-kpi-card {
+    border-radius: var(--ui-radius-lg);
+    padding: 18px;
+    border: 2px solid #ffffff;
+    background: var(--kpi-bg);
+    box-shadow: 0 6px 18px rgba(15,23,42,0.07);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ui-kpi-yellow { --kpi-bg: var(--kpi-yellow); }
+.ui-kpi-teal   { --kpi-bg: var(--kpi-teal); }
+.ui-kpi-pink   { --kpi-bg: var(--kpi-pink); }
+.ui-kpi-indigo { --kpi-bg: var(--kpi-indigo); }
+
+.ui-kpi-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ui-kpi-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ui-text-soft);
+}
+
+.ui-kpi-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ui-text);
+}
+/* KPI extra building blocks */
+.ui-kpi-value-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ui-kpi-trend {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ui-text-muted);
+}
+
+.ui-kpi-trend.positive {
+    color: #16a34a;
+}
+
+.ui-kpi-badge {
+    background: var(--ui-bg);
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    color: var(--ui-text-muted);
+    border: 1px solid var(--ui-border);
+}
+
+.ui-kpi-chart {
+    height: 70px;
+}

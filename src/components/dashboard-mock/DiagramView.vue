@@ -73,7 +73,7 @@ function findLampByNodeId(nodeId) {
     return null
 }
 
-// klik w node → pokazujemy modal
+// klik w node → modal
 function handleNodeClick({ node }) {
     if (!node?.id) return
 
@@ -131,7 +131,6 @@ function handleNodeClick({ node }) {
         return
     }
 
-    // Budynek
     if (node.id.startsWith('building-')) {
         const b = props.building
         dialogData.value = {
@@ -146,7 +145,6 @@ function handleNodeClick({ node }) {
     }
 }
 
-// budowanie układu
 function rebuildGraph(bld) {
     const tmpNodes = []
     const tmpEdges = []
@@ -232,15 +230,30 @@ watch(
 </script>
 
 <template>
-    <div>
-        <div class="header">
-            <div class="header-title">
-                <i class="pi pi-share-alt text-black-500 mr-2"></i>
-                {{ t('dashboard.diagram')}}
-            </div>
-        </div>
+    <div class="space-y-6">
 
-        <div class="diagram-container">
+        <!-- HEADER -->
+        <header class="ui-header">
+            <div>
+                <h2 class="ui-header-title">
+                    {{ t('dashboard.diagram') || 'Building Diagram' }}
+                </h2>
+
+                <div class="ui-header-meta">
+                    <span class="ui-meta-pill">
+                        <i class="pi pi-sitemap mr-1"></i>
+                        Auto topology
+                    </span>
+                    <span class="ui-meta-pill">
+                        <i class="pi pi-clock mr-1"></i>
+                        Live sync
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!-- INDUSTRIAL PANEL WRAPPER -->
+        <div class="ui-panel diagram-panel">
             <VueFlow
                 v-model:nodes="nodes"
                 v-model:edges="edges"
@@ -250,72 +263,82 @@ watch(
                 <Controls />
                 <Background pattern-color="#e5e7eb" :gap="20" />
             </VueFlow>
-
-            <!-- Modal szczegółów -->
-            <Dialog v-model:visible="showDialog" modal :style="{ width: '480px' }" :header="t('buttons.details')" dismissableMask>
-                <template #header>
-                    <div class="flex items-center gap-2">
-                        <span class="text-lg font-semibold">{{ dialogData?.title }}</span>
-                        <Tag v-if="dialogData?.type" :value="dialogData.type" severity="info" />
-                    </div>
-                </template>
-
-                <div v-if="dialogData?.meta" class="space-y-2">
-                    <div v-for="(val, key) in dialogData.meta" :key="key" class="flex justify-between text-sm">
-                        <span class="text-gray-500">{{ key }}</span>
-                        <span class="font-medium">{{ val }}</span>
-                    </div>
-                </div>
-
-                <template #footer>
-                    <Button :label="t('buttons.close')" @click="showDialog=false" />
-                </template>
-            </Dialog>
         </div>
+
+        <!-- DETAILS MODAL -->
+        <Dialog
+            v-model:visible="showDialog"
+            modal
+            :style="{ width: '460px' }"
+            class="corex-dialog"
+            dismissableMask
+        >
+            <template #header>
+                <div class="flex items-center gap-2">
+                    <span class="text-lg font-semibold">{{ dialogData?.title }}</span>
+                    <Tag v-if="dialogData?.type" :value="dialogData.type" severity="info" />
+                </div>
+            </template>
+
+            <div v-if="dialogData?.meta" class="corex-modal-list">
+                <div
+                    v-for="(val, key) in dialogData.meta"
+                    :key="key"
+                    class="corex-modal-row"
+                >
+                    <span class="corex-modal-label">{{ key }}</span>
+                    <span class="corex-modal-value">{{ val }}</span>
+                </div>
+            </div>
+
+            <template #footer>
+                <Button :label="t('buttons.close')" @click="showDialog=false" />
+            </template>
+        </Dialog>
+
     </div>
 </template>
 
 <style scoped>
-.diagram-container {
-    height: calc(100vh - 10rem);
+/* === PANEL (industrial) === */
+.diagram-panel {
+    height: calc(100vh - 11rem);
     min-height: 600px;
-    background-color: #f9fafb;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-}
-/* ============================================================
-   HEADER — same style as Rack View
-============================================================ */
-.header {
-    padding: 14px 18px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    background: #e7e8eb;
-    border: 1px solid #c2c4c7;
-
+    background: var(--ui-bg-panel);
+    border-radius: var(--ui-radius);
+    border: 1px solid var(--ui-border);
     box-shadow:
-        inset 0 0 1px rgba(255,255,255,0.7),
-        0 1px 2px rgba(0,0,0,0.07);
+        inset 0 0 1px rgba(255,255,255,0.6),
+        0 1px 2px rgba(0,0,0,0.06);
+    overflow: hidden;
 }
 
-.app-dark .header {
-    background: #1b1d1f;
-    border-color: #2d2f31;
-    box-shadow:
-        inset 0 0 1px rgba(255,255,255,0.05),
-        0 1px 3px rgba(0,0,0,0.7);
-}
-
-.header-title {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: #373a40;
+/* === MODAL === */
+.corex-modal-list {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
 }
 
-.app-dark .header-title {
-    color: #e5e7eb;
+.corex-modal-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--ui-border);
+}
+
+.corex-modal-row:last-child {
+    border-bottom: none;
+}
+
+.corex-modal-label {
+    color: var(--ui-text-muted);
+}
+
+.corex-modal-value {
+    font-weight: 600;
+    color: var(--ui-text);
 }
 </style>

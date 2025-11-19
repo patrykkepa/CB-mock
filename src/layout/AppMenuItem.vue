@@ -30,12 +30,23 @@ const isActiveMenu = ref(false);
 const itemKey = ref(null);
 
 onBeforeMount(() => {
-    itemKey.value = props.parentItemKey ? props.parentItemKey + '-' + props.index : String(props.index);
+    itemKey.value = props.parentItemKey
+        ? props.parentItemKey + '-' + props.index
+        : String(props.index)
 
-    const activeItem = layoutState.activeMenuItem;
+    const activePath = route.path
 
-    isActiveMenu.value = activeItem === itemKey.value || activeItem ? activeItem.startsWith(itemKey.value + '-') : false;
-});
+    // 1) Czy ten item prowadzi do aktywnej ścieżki?
+    const matchesSelf =
+        props.item.to && activePath.startsWith(props.item.to)
+
+    // 2) Czy któryś potomek prowadzi do aktywnej ścieżki?
+    const matchesChild = props.item.items?.some(child =>
+        child.to && activePath.startsWith(child.to)
+    )
+
+    isActiveMenu.value = matchesSelf || matchesChild
+})
 
 watch(
     () => layoutState.activeMenuItem,

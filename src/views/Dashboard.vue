@@ -42,22 +42,48 @@ onUnmounted(() => clearInterval(timer));
 
 <template>
     <div class="p-6">
-        <div class="flex items-center justify-between mb-4">
-            <h2 class="text-2xl font-semibold">Live Devices</h2>
-            <Tag :value="isConnected ? 'Connected' : 'Disconnected'" :severity="isConnected ? 'success' : 'danger'" />
+
+        <!-- INFO PANEL — przejście do Dashboard Mock -->
+        <div class="mb-6 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 shadow-sm flex items-start gap-4">
+            <i class="pi pi-info-circle text-blue-600 dark:text-blue-300 text-xl mt-1"></i>
+
+            <div class="flex-1">
+                <h3 class="font-semibold text-blue-700 dark:text-blue-300 mb-1">
+                    Dashboard Mock available
+                </h3>
+                <p class="text-blue-600 dark:text-blue-400 text-sm">
+                    To view building, stations and channel data in real-time simulation mode,
+                    please switch to the <strong>Dashboard Mock</strong>.
+                </p>
+            </div>
+
+            <router-link
+                to="/dashboard-mock"
+                class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm shadow transition"
+            >
+                Go to Dashboard Mock
+            </router-link>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <DeviceCard
-                v-for="dev in formattedDevices"
-                :key="dev.device_id"
-                :device="dev"
-                @onPayload="payload => { selectedPayload = payload; showPayloadDialog = true; }"
-                @onControl="id => { controlDevice = id; showControlDialog = true; }"
-            />
-        </div>
+<!--        &lt;!&ndash; HEADER &ndash;&gt;-->
+<!--        <div class="flex items-center justify-between mb-4">-->
+<!--            <h2 class="text-2xl font-semibold">Live Devices</h2>-->
+<!--            <Tag :value="isConnected ? 'Connected' : 'Disconnected'" :severity="isConnected ? 'success' : 'danger'" />-->
+<!--        </div>-->
 
-        <DeviceDetailsDialog v-model:visible="showPayloadDialog" :payload="selectedPayload" />
-        <DeviceControlDialog v-model:visible="showControlDialog" :deviceId="controlDevice" />
+<!--        &lt;!&ndash; DEVICES GRID &ndash;&gt;-->
+<!--        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">-->
+<!--            <DeviceCard-->
+<!--                v-for="dev in formattedDevices"-->
+<!--                :key="dev.device_id"-->
+<!--                :device="dev"-->
+<!--                @onPayload="payload => { selectedPayload = payload; showPayloadDialog = true; }"-->
+<!--                @onControl="id => { controlDevice = id; showControlDialog = true; }"-->
+<!--            />-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; DIALOGI &ndash;&gt;-->
+<!--        <DeviceDetailsDialog v-model:visible="showPayloadDialog" :payload="selectedPayload" />-->
+<!--        <DeviceControlDialog v-model:visible="showControlDialog" :deviceId="controlDevice" />-->
     </div>
 </template>

@@ -1,0 +1,50 @@
+/* -------------------------------------------------------
+   ui-vars.css
+   Global variables for both themes
+------------------------------------------------------- */
+
+:root {
+    /* neutral base */
+    --ui-bg: #ffffff;
+    --ui-bg-soft: #f9fafb;
+    --ui-bg-panel: #f5f6f7;
+
+    --ui-border: #e5e7eb;
+    --ui-border-strong: #d1d5db;
+
+    --ui-text: #111827;
+    --ui-text-soft: #374151;
+    --ui-text-muted: #6b7280;
+
+    --ui-radius: 12px;
+    --ui-radius-lg: 18px;
+
+    /* Pastel KPI backgrounds (LIGHT mode) */
+    --kpi-yellow: #fef8e7;
+    --kpi-teal:   #e6fcf7;
+    --kpi-pink:   #fdeef7;
+    --kpi-indigo: #eef0ff;
+}
+
+/* -------------------------------------------------------
+   Dark theme overrides
+------------------------------------------------------- */
+
+.app-dark {
+    --ui-bg: #111827;
+    --ui-bg-soft: #1a1c1f;
+    --ui-bg-panel: #1a1c1e;
+
+    --ui-border: #2d2f31;
+    --ui-border-strong: #2d2f31;
+
+    --ui-text: #f3f4f6;
+    --ui-text-soft: #e5e7eb;
+    --ui-text-muted: #9ca3af;
+
+    /* Pastel KPI backgrounds (DARK mode), identical to TestsView */
+    --kpi-yellow: #3c2f16;
+    --kpi-teal:   #0c2e29;
+    --kpi-pink:   #3a1020;
+    --kpi-indigo: #1a1d39;
+}

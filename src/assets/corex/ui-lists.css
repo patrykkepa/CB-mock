@@ -1,0 +1,20 @@
+/* -------------------------------------------------------
+   ui-lists.css
+------------------------------------------------------- */
+
+.ui-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ui-list-item {
+    border-bottom: 1px solid var(--ui-border);
+    padding: 8px 0;
+    font-size: 13px;
+    color: var(--ui-text);
+}
+
+.ui-list-item:last-child {
+    border-bottom: none;
+}

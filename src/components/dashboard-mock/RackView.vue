@@ -91,20 +91,28 @@ function goToChannel(station, controller) {
 </script>
 
 <template>
-    <div class="flex flex-col gap-4 h-full">
-        <!-- HEADER (Rack-style) -->
-        <div class="header">
-            <div class="header-title">
-                <i class="pi pi-server text-black-500 mr-2"></i>
-                {{ t('dashboard.rack')}}
-            </div>
-        </div>
+    <div class="rack-view space-y-6">
 
-        <div class="flex-1 overflow-y-auto py-2">
-            <div
-                class="rack-grid"
-                style="grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));"
-            >
+        <!-- HEADER-->
+        <header class="ui-header">
+            <h2 class="ui-header-title">
+                {{ t('dashboard.rack') || 'Rack overview' }}
+            </h2>
+            <div class="ui-header-meta">
+                <span class="ui-meta-pill">
+                    <i class="pi pi-server mr-1"></i>
+                    {{ stations.length }} stations
+                </span>
+                <span class="ui-meta-pill">
+                    <i class="pi pi-sitemap mr-1"></i>
+                    LCM · LCC · LUM topology
+                </span>
+            </div>
+        </header>
+
+        <!-- PANEL z rackami -->
+        <div class="ui-panel rack-panel">
+            <div class="rack-grid">
                 <!-- RACK 19" STATION -->
                 <div
                     v-for="st in stations"
@@ -212,7 +220,7 @@ function goToChannel(station, controller) {
                                         <span class="rack19-module-led" :class="channelStatus(ctrl)"></span>
                                     </div>
 
-                                    <!-- DÓŁ MODUŁU – BUTTON „LAMPS” (oryginalny, zostawiony) -->
+                                    <!-- DÓŁ MODUŁU – BUTTON „LUM” -->
                                     <button
                                         class="rack19-module-btn"
                                         :class="channelStatus(ctrl)"
@@ -239,23 +247,35 @@ function goToChannel(station, controller) {
             v-model:visible="stationDialogVisible"
             modal
             :style="{ width: '420px' }"
-            header="Station details"
+            :header="t('dashboard.station_details') || 'Station details'"
         >
-            <div v-if="stationDialogData" class="space-y-2 text-sm">
-                <div class="font-semibold text-primary-700 dark:text-primary-300">
-                    {{ stationDialogData.name }}
+            <div v-if="stationDialogData" class="corex-modal">
+                <div class="corex-modal-heading">
+                    <div class="corex-modal-title">
+                        {{ stationDialogData.name }}
+                    </div>
+                    <div class="corex-modal-sub">
+                        ID: {{ stationDialogData.device_id }}
+                    </div>
                 </div>
-                <div class="text-xs text-gray-500">
-                    Device ID: {{ stationDialogData.device_id }}
+
+                <div class="corex-modal-list">
+                    <div class="corex-modal-row">
+                        <span class="corex-modal-label">Channels</span>
+                        <span class="corex-modal-value">{{ stationDialogData.stats.channels }}</span>
+                    </div>
+                    <div class="corex-modal-row">
+                        <span class="corex-modal-label">Lamps</span>
+                        <span class="corex-modal-value">
+                            {{ stationDialogData.stats.lampsOn }}/{{ stationDialogData.stats.lampsTotal }} ON
+                        </span>
+                    </div>
                 </div>
-                <div>Channels: {{ stationDialogData.stats.channels }}</div>
-                <div>
-                    Lamps: {{ stationDialogData.stats.lampsOn }}/{{ stationDialogData.stats.lampsTotal }} ON
-                </div>
-                <div class="text-xs mt-3 text-gray-500">
-                    FW: {{ stationDialogData.firmware }}<br />
-                    Uptime: {{ stationDialogData.uptime }}s<br />
-                    Heartbeats: {{ stationDialogData.heartbeats }}
+
+                <div class="corex-modal-footnote">
+                    <div>FW: {{ stationDialogData.firmware || '—' }}</div>
+                    <div>Uptime: {{ stationDialogData.uptime ?? '—' }}s</div>
+                    <div>Heartbeats: {{ stationDialogData.heartbeats ?? '—' }}</div>
                 </div>
             </div>
         </Dialog>
@@ -265,20 +285,31 @@ function goToChannel(station, controller) {
             v-model:visible="channelDialogVisible"
             modal
             :style="{ width: '420px' }"
-            header="Channel details"
+            :header="t('dashboard.channel_details') || 'Channel details'"
         >
-            <div v-if="channelDialogData" class="space-y-2 text-sm">
-                <div class="font-semibold text-primary-700 dark:text-primary-300">
-                    {{ channelDialogData.controller.name || ('Channel ' + channelDialogData.controller.id) }}
+            <div v-if="channelDialogData" class="corex-modal">
+                <div class="corex-modal-heading">
+                    <div class="corex-modal-title">
+                        {{ channelDialogData.controller.name || ('Channel ' + channelDialogData.controller.id) }}
+                    </div>
+                    <div class="corex-modal-sub">
+                        Station: {{ channelDialogData.station.name }}
+                    </div>
                 </div>
-                <div class="text-xs text-gray-500">
-                    Station: {{ channelDialogData.station.name }}
-                </div>
-                <div>
-                    Lamps: {{ channelDialogData.stats.lampsOn }}/{{ channelDialogData.stats.lampsTotal }} ON
-                </div>
-                <div class="text-xs mt-3 text-gray-500">
-                    Free memory: {{ channelDialogData.controller.free_heap }}
+
+                <div class="corex-modal-list">
+                    <div class="corex-modal-row">
+                        <span class="corex-modal-label">Lamps</span>
+                        <span class="corex-modal-value">
+                            {{ channelDialogData.stats.lampsOn }}/{{ channelDialogData.stats.lampsTotal }} ON
+                        </span>
+                    </div>
+                    <div class="corex-modal-row">
+                        <span class="corex-modal-label">Free memory</span>
+                        <span class="corex-modal-value">
+                            {{ channelDialogData.controller.free_heap ?? '—' }}
+                        </span>
+                    </div>
                 </div>
             </div>
         </Dialog>
@@ -288,59 +319,54 @@ function goToChannel(station, controller) {
             v-model:visible="powerDialogVisible"
             modal
             :style="{ width: '420px' }"
-            header="Power details"
+            :header="t('dashboard.power_details') || 'Power details'"
         >
-            <div v-if="powerDialogData" class="space-y-3 text-sm">
-                <div class="flex items-center justify-between">
+            <div v-if="powerDialogData" class="corex-modal">
+                <div class="corex-modal-heading corex-modal-heading-row">
                     <div>
-                        <div class="font-semibold text-primary-700 dark:text-primary-300">
+                        <div class="corex-modal-title">
                             {{ powerDialogData.name }}
                         </div>
-                        <div class="text-xs text-gray-500">
+                        <div class="corex-modal-sub">
                             Device ID: {{ powerDialogData.device_id }}
                         </div>
                     </div>
-                    <div class="flex items-center gap-2 text-xs">
+                    <div class="corex-status-pill">
                         <span
-                            class="inline-flex h-2.5 w-2.5 rounded-full"
-                            :class="{
-                                'bg-emerald-400': stationStatus(powerDialogData) === 'ok',
-                                'bg-amber-400': stationStatus(powerDialogData) === 'warn',
-                                'bg-red-400': stationStatus(powerDialogData) === 'error',
-                                'bg-slate-400': stationStatus(powerDialogData) === 'idle',
-                            }"
+                            class="corex-status-dot"
+                            :class="stationStatus(powerDialogData)"
                         ></span>
-                        <span class="uppercase tracking-wide text-gray-500">
+                        <span class="corex-status-text">
                             {{ stationStatus(powerDialogData).toUpperCase() }}
                         </span>
                     </div>
                 </div>
 
-                <div class="text-xs text-gray-500">
-                    (Demo) Tutaj możesz później podpiąć realne dane o zasilaniu:
-                    fazy, napięcia, prądy, zabezpieczenia itd.
+                <div class="corex-modal-footnote">
+                    (Demo) Here you can later attach real power metrics: phases, voltage,
+                    currents, breakers and so on.
                 </div>
 
-                <div class="grid grid-cols-2 gap-2 mt-2 text-xs">
-                    <div class="p-2 rounded border border-gray-200 dark:border-gray-700">
-                        <div class="text-gray-500 mb-1">Estimated load</div>
-                        <div class="font-semibold">
+                <div class="corex-modal-grid">
+                    <div class="corex-info-tile">
+                        <div class="corex-info-label">Estimated load</div>
+                        <div class="corex-info-value">
                             ~{{ powerDialogData.stats.lampsOn * 30 }} W
                         </div>
-                        <div class="text-[11px] text-gray-400">
+                        <div class="corex-info-note">
                             (30 W per active luminaire – mock)
                         </div>
                     </div>
-                    <div class="p-2 rounded border border-gray-200 dark:border-gray-700">
-                        <div class="text-gray-500 mb-1">Utilization</div>
-                        <div class="font-semibold">
+                    <div class="corex-info-tile">
+                        <div class="corex-info-label">Utilization</div>
+                        <div class="corex-info-value">
                             {{
                                 Math.round(
                                     (powerDialogData.stats.lampsOn / (powerDialogData.stats.lampsTotal || 1)) * 100
                                 )
                             }}%
                         </div>
-                        <div class="text-[11px] text-gray-400">
+                        <div class="corex-info-note">
                             Active vs total luminaires
                         </div>
                     </div>
@@ -351,12 +377,25 @@ function goToChannel(station, controller) {
 </template>
 
 <style scoped>
+.rack-view {
+    padding-bottom: 1rem;
+}
+
+/* panel z rackami */
+.rack-panel {
+    padding: 16px !important;
+}
+
+/* GRID na racki */
 .rack-grid {
     display: grid;
     gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 
-/* GŁÓWNY RACK 19" */
+/* ===========================
+   GŁÓWNY RACK 19"
+=========================== */
 .rack19 {
     background: #15171a;
     border-radius: 10px;
@@ -369,7 +408,7 @@ function goToChannel(station, controller) {
     overflow: hidden;
 }
 
-/* Górna listwa, coś jak panel identyfikacyjny */
+/* Górna listwa */
 .rack19-top {
     height: 28px;
     background: linear-gradient(180deg, #2b2f35, #1e2227);
@@ -383,12 +422,7 @@ function goToChannel(station, controller) {
     color: #e5e7eb;
 }
 
-.rack19-top-left {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
+.rack19-top-left,
 .rack19-top-right {
     display: flex;
     align-items: center;
@@ -520,7 +554,7 @@ function goToChannel(station, controller) {
     gap: 8px;
 }
 
-/* Moduł stacji (jak główny moduł PLC) */
+/* Moduł stacji */
 .rack19-station-module {
     display: flex;
     align-items: center;
@@ -695,7 +729,7 @@ function goToChannel(station, controller) {
     background: #6b7280;
 }
 
-/* przycisk dolny (LUM – jak w Twojej wersji) */
+/* przycisk dolny (LUM) */
 .rack19-module-btn {
     width: 100%;
     font-size: 10px;
@@ -728,40 +762,139 @@ function goToChannel(station, controller) {
     filter: brightness(1.05);
     transform: translateY(-0.5px);
 }
-/* ============================================================
-   HEADER — same style as Rack View
-============================================================ */
-.header {
-    padding: 14px 18px;
-    border-radius: 10px;
 
-    background: #e7e8eb;
-    border: 1px solid #c2c4c7;
-
-    box-shadow:
-        inset 0 0 1px rgba(255,255,255,0.7),
-        0 1px 2px rgba(0,0,0,0.07);
-}
-
-.app-dark .header {
-    background: #1b1d1f;
-    border-color: #2d2f31;
-    box-shadow:
-        inset 0 0 1px rgba(255,255,255,0.05),
-        0 1px 3px rgba(0,0,0,0.7);
-}
-
-.header-title {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: #373a40;
+/* ===========================
+   MODALE CoreX
+=========================== */
+.corex-modal {
     display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 13px;
+}
+
+.corex-modal-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.corex-modal-heading-row {
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 }
 
-.app-dark .header-title {
-    color: #e5e7eb;
+.corex-modal-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ui-text);
 }
 
+.corex-modal-sub {
+    font-size: 12px;
+    color: var(--ui-text-muted);
+}
+
+.corex-modal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.corex-modal-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--ui-border);
+}
+
+.corex-modal-row:last-child {
+    border-bottom: none;
+}
+
+.corex-modal-label {
+    color: var(--ui-text-muted);
+}
+
+.corex-modal-value {
+    font-weight: 600;
+    color: var(--ui-text);
+}
+
+.corex-modal-footnote {
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--ui-text-muted);
+}
+
+/* POWER STATUS */
+.corex-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--ui-border);
+    background: var(--ui-bg-soft);
+    font-size: 11px;
+}
+
+.corex-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+}
+.corex-status-dot.ok {
+    background: #22c55e;
+}
+.corex-status-dot.warn {
+    background: #facc15;
+}
+.corex-status-dot.error {
+    background: #ef4444;
+}
+.corex-status-dot.idle {
+    background: #6b7280;
+}
+
+.corex-status-text {
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: var(--ui-text-muted);
+}
+
+/* GRID tiles w Power modal */
+.corex-modal-grid {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.corex-info-tile {
+    border-radius: var(--ui-radius);
+    border: 1px solid var(--ui-border);
+    background: var(--ui-bg-soft);
+    padding: 8px;
+}
+
+.corex-info-label {
+    font-size: 12px;
+    color: var(--ui-text-muted);
+    margin-bottom: 2px;
+}
+
+.corex-info-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ui-text);
+}
+
+.corex-info-note {
+    font-size: 11px;
+    color: var(--ui-text-muted);
+    margin-top: 2px;
+}
 </style>

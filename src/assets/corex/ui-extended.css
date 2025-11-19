@@ -1,0 +1,302 @@
+/* ============================================================
+   CoreX EXTENDED MODULE
+   Uzupełnia brakujące klasy: KPI v2, TestsPanel, HealthPanel,
+   PowerPanel, ExportPanel, 2-column layout.
+   (kompatybilne z ui-* i dark mode)
+============================================================ */
+
+/* ============================
+   KPI v2 (cx-kpi-*)
+============================ */
+.cx-kpi-card {
+    border-radius: var(--ui-radius-lg);
+    padding: 20px;
+    border: 3px solid #ffffff;
+    background: var(--tile-bg);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: transform .12s ease;
+}
+
+.cx-kpi-card:hover { transform: translateY(-2px); }
+
+.cx-kpi-yellow { --tile-bg: var(--kpi-yellow); }
+.cx-kpi-teal   { --tile-bg: var(--kpi-teal); }
+.cx-kpi-pink   { --tile-bg: var(--kpi-pink); }
+.cx-kpi-indigo { --tile-bg: var(--kpi-indigo); }
+
+.cx-kpi-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ui-text-soft);
+}
+.cx-kpi-title { color: var(--ui-text-soft); }
+
+.cx-kpi-badge {
+    background: var(--ui-bg);
+    padding: 4px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--ui-border);
+    font-size: 11px;
+    color: var(--ui-text-muted);
+}
+
+.cx-kpi-value-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cx-kpi-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ui-text);
+}
+.cx-kpi-trend {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ui-text-muted);
+}
+.cx-kpi-trend.positive { color: #16a34a; }
+
+.cx-kpi-chart { height: 70px; }
+
+
+/* ============================
+   2-COLUMN LAYOUT (v2)
+============================ */
+.bo-two-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+}
+
+@media (min-width: 1024px) {
+    .bo-two-col {
+        grid-template-columns: 1.6fr 1fr;
+    }
+}
+
+.bo-right-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+/* ============================
+   Advanced Functional Tests Panel
+============================ */
+.bo-tests-panel {
+    border-radius: var(--ui-radius);
+    border: 1px solid var(--ui-border);
+    background: var(--ui-bg);
+    padding: 18px 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.bo-tests-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bo-tests-header h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ui-text);
+}
+
+.bo-tests-total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.bo-tests-total-number {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ui-text);
+}
+.bo-tests-total-label {
+    font-size: 11px;
+    color: var(--ui-text-muted);
+}
+
+.bo-tests-body { margin-top: 8px; }
+
+.bo-tests-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.bo-tests-col { font-size: 12px; }
+
+.bo-tests-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.bo-tests-label.ok { color: #22c55e; }
+.bo-tests-label.failed { color: #ef4444; }
+
+.bo-tests-value {
+    font-weight: 700;
+}
+
+.bo-tests-value.ok { color: #22c55e; }
+.bo-tests-value.failed { color: #ef4444; }
+
+.bo-tests-detail {
+    font-size: 11px;
+    color: var(--ui-text-muted);
+}
+
+.bo-tests-bar {
+    margin-top: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--ui-border);
+    overflow: hidden;
+    display: flex;
+}
+
+.bo-tests-bar-segment.ok {
+    background: linear-gradient(90deg, #22c55e, #4ade80);
+}
+.bo-tests-bar-segment.failed {
+    background: linear-gradient(90deg, #ef4444, #b91c1c);
+}
+
+
+/* ============================
+   System Health Panel
+============================ */
+.bo-health-card {
+    border-radius: var(--ui-radius);
+    border: 1px solid var(--ui-border);
+    background: var(--ui-bg-soft);
+    padding: 18px 20px;
+}
+
+.bo-health-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bo-health-header h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ui-text);
+}
+
+.bo-health-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #dcfce7;
+    color: #166534;
+    font-size: 11px;
+}
+
+.bo-health-status.ok { background: #dcfce7; color: #166534; }
+
+.bo-health-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.bo-health-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.bo-health-label { color: var(--ui-text-muted); }
+.bo-health-value { font-weight: 600; color: var(--ui-text); }
+.bo-health-value.warning { color: #f97316; }
+
+.bo-health-bar {
+    margin-top: 6px;
+    height: 6px;
+    background: var(--ui-border);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.bo-health-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #22c55e, #4ade80);
+}
+
+
+/* ============================
+   Power Panel + Export Panel
+============================ */
+.bi-panel {
+    border-radius: var(--ui-radius-lg);
+    border: 1px solid var(--ui-border);
+    background: var(--ui-bg);
+    padding: 18px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.bi-panel-title-row {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ui-text-soft);
+}
+
+.bi-power-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.bi-power-label { color: var(--ui-text-muted); }
+.bi-power-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ui-text);
+}
+
+.bi-power-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--ui-text-muted);
+}
+
+.bi-power-bar {
+    height: 6px;
+    background: var(--ui-border);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.bi-power-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f97316, #fbbf24);
+}
+
+.bi-export-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.bi-export-text {
+    color: var(--ui-text-muted);
+    font-size: 14px;
+}

@@ -1,7 +1,7 @@
 {
     "id": "B-1",
     "name": "Szpital Miejski",
-    "map_position": { "x": "62%", "y": "48%" },
+    "map_position": { "x": "58%", "y": "39%" },
     "address": "ul. Zdrowia 10, Warszawa",
     "type": "Hospital",
     "area_m2": 4121,
@@ -20,7 +20,7 @@
             "uptime": 39736,
             "controllers": [
                 {
-                    "id": "CTRL-1-1-1",
+                    "id": "LCC-1-1-1",
                     "chip_rev": "rev_1",
                     "firmware": "v3.0",
                     "free_heap": 11417,
@@ -33,7 +33,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-1-2",
+                    "id": "LCC-1-1-2",
                     "chip_rev": "rev_3",
                     "firmware": "v3.1",
                     "free_heap": 17242,
@@ -87,7 +87,7 @@
             "uptime": 1269,
             "controllers": [
                 {
-                    "id": "CTRL-1-2-1",
+                    "id": "LCC-1-2-1",
                     "chip_rev": "rev_3",
                     "firmware": "v3.6",
                     "free_heap": 23055,
@@ -148,7 +148,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-2-2",
+                    "id": "LCC-1-2-2",
                     "chip_rev": "rev_1",
                     "firmware": "v1.2",
                     "free_heap": 23907,
@@ -169,7 +169,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-2-3",
+                    "id": "LCC-1-2-3",
                     "chip_rev": "rev_3",
                     "firmware": "v2.4",
                     "free_heap": 25157,
@@ -203,7 +203,7 @@
             "uptime": 42651,
             "controllers": [
                 {
-                    "id": "CTRL-1-3-1",
+                    "id": "LCC-1-3-1",
                     "chip_rev": "rev_2",
                     "firmware": "v1.1",
                     "free_heap": 26208,
@@ -240,7 +240,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-3-2",
+                    "id": "LCC-1-3-2",
                     "chip_rev": "rev_3",
                     "firmware": "v2.7",
                     "free_heap": 19394,
@@ -298,7 +298,7 @@
             "uptime": 84263,
             "controllers": [
                 {
-                    "id": "CTRL-1-4-1",
+                    "id": "LCC-1-4-1",
                     "chip_rev": "rev_1",
                     "firmware": "v3.8",
                     "free_heap": 14610,
@@ -387,7 +387,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-4-2",
+                    "id": "LCC-1-4-2",
                     "chip_rev": "rev_2",
                     "firmware": "v3.5",
                     "free_heap": 15435,
@@ -468,7 +468,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-4-3",
+                    "id": "LCC-1-4-3",
                     "chip_rev": "rev_3",
                     "firmware": "v2.3",
                     "free_heap": 17740,
@@ -537,7 +537,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-4-4",
+                    "id": "LCC-1-4-4",
                     "chip_rev": "rev_1",
                     "firmware": "v2.7",
                     "free_heap": 21293,
@@ -579,7 +579,7 @@
             "uptime": 89909,
             "controllers": [
                 {
-                    "id": "CTRL-1-6-1",
+                    "id": "LCC-1-6-1",
                     "chip_rev": "rev_1",
                     "firmware": "v2.0",
                     "free_heap": 27227,
@@ -648,7 +648,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-6-2",
+                    "id": "LCC-1-6-2",
                     "chip_rev": "rev_1",
                     "firmware": "v1.1",
                     "free_heap": 11418,
@@ -705,7 +705,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-6-3",
+                    "id": "LCC-1-6-3",
                     "chip_rev": "rev_3",
                     "firmware": "v1.5",
                     "free_heap": 24116,
@@ -799,7 +799,7 @@
             "uptime": 25228,
             "controllers": [
                 {
-                    "id": "CTRL-1-7-1",
+                    "id": "LCC-1-7-1",
                     "chip_rev": "rev_1",
                     "firmware": "v2.8",
                     "free_heap": 29214,
@@ -853,7 +853,7 @@
             "uptime": 38585,
             "controllers": [
                 {
-                    "id": "CTRL-1-8-1",
+                    "id": "LCC-1-8-1",
                     "chip_rev": "rev_2",
                     "firmware": "v2.5",
                     "free_heap": 17607,
@@ -895,7 +895,7 @@
             "uptime": 23639,
             "controllers": [
                 {
-                    "id": "CTRL-1-9-1",
+                    "id": "LCC-1-9-1",
                     "chip_rev": "rev_1",
                     "firmware": "v2.5",
                     "free_heap": 23109,
@@ -924,7 +924,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-9-2",
+                    "id": "LCC-1-9-2",
                     "chip_rev": "rev_2",
                     "firmware": "v3.7",
                     "free_heap": 25486,
@@ -953,7 +953,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-9-3",
+                    "id": "LCC-1-9-3",
                     "chip_rev": "rev_3",
                     "firmware": "v1.7",
                     "free_heap": 27952,
@@ -1002,7 +1002,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-9-4",
+                    "id": "LCC-1-9-4",
                     "chip_rev": "rev_3",
                     "firmware": "v1.8",
                     "free_heap": 14699,
@@ -1024,7 +1024,7 @@
             "uptime": 91069,
             "controllers": [
                 {
-                    "id": "CTRL-1-10-1",
+                    "id": "LCC-1-10-1",
                     "chip_rev": "rev_1",
                     "firmware": "v3.9",
                     "free_heap": 18234,
@@ -1097,7 +1097,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-10-2",
+                    "id": "LCC-1-10-2",
                     "chip_rev": "rev_3",
                     "firmware": "v3.4",
                     "free_heap": 28187,
@@ -1138,7 +1138,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-10-3",
+                    "id": "LCC-1-10-3",
                     "chip_rev": "rev_1",
                     "firmware": "v1.7",
                     "free_heap": 26204,
@@ -1216,7 +1216,7 @@
             "uptime": 31506,
             "controllers": [
                 {
-                    "id": "CTRL-1-11-1",
+                    "id": "LCC-1-11-1",
                     "chip_rev": "rev_1",
                     "firmware": "v3.3",
                     "free_heap": 26770,
@@ -1265,7 +1265,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-11-2",
+                    "id": "LCC-1-11-2",
                     "chip_rev": "rev_1",
                     "firmware": "v2.4",
                     "free_heap": 26431,
@@ -1323,7 +1323,7 @@
             "uptime": 59449,
             "controllers": [
                 {
-                    "id": "CTRL-1-12-1",
+                    "id": "LCC-1-12-1",
                     "chip_rev": "rev_1",
                     "firmware": "v2.7",
                     "free_heap": 29733,
@@ -1392,7 +1392,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-12-2",
+                    "id": "LCC-1-12-2",
                     "chip_rev": "rev_3",
                     "firmware": "v2.7",
                     "free_heap": 12443,
@@ -1486,7 +1486,7 @@
             "uptime": 3209,
             "controllers": [
                 {
-                    "id": "CTRL-1-13-1",
+                    "id": "LCC-1-13-1",
                     "chip_rev": "rev_2",
                     "firmware": "v2.2",
                     "free_heap": 19466,
@@ -1527,7 +1527,7 @@
                     ]
                 },
                 {
-                    "id": "CTRL-1-13-2",
+                    "id": "LCC-1-13-2",
                     "chip_rev": "rev_2",
                     "firmware": "v2.5",
                     "free_heap": 25939,
@@ -1605,7 +1605,7 @@
             "uptime": 43124,
             "controllers": [
                 {
-                    "id": "CTRL-1-15-1",
+                    "id": "LCC-1-15-1",
                     "chip_rev": "rev_1",
                     "firmware": "v1.8",
                     "free_heap": 24280,
@@ -1643,7 +1643,7 @@
             "uptime": 63911,
             "controllers": [
                 {
-                    "id": "CTRL-1-16-1",
+                    "id": "LCC-1-16-1",
                     "chip_rev": "rev_1",
                     "firmware": "v1.5",
                     "free_heap": 29258,

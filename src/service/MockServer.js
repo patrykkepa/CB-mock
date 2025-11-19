@@ -1,88 +1,123 @@
 // src/service/MockServer.js
 import { reactive } from 'vue'
 
-// 🔹 Lokalny stan reaktywny
 const db = reactive({ buildings: [] })
 
 let timer = null
+let currentRole = null
 
 /* ------------------------------------------------------
-   🔥 WYMUSZENIE: Minimum 50% kanałów w każdej stacji ON
+   WYMUSZENIE: Minimum 50% kanałów w każdej stacji ON
 ------------------------------------------------------ */
 function enforceLampRules(buildings) {
     buildings.forEach(building => {
         building.stations.forEach(station => {
-            if (!station.controllers || station.controllers.length === 0) return;
+            if (!station.controllers || station.controllers.length === 0) return
 
-            const totalControllers = station.controllers.length;
-            const requiredFullOn = Math.ceil(totalControllers / 2);
+            const totalControllers = station.controllers.length
+            const requiredFullOn = Math.ceil(totalControllers / 2)
 
-            // znajdź kontrolery które są FULL-ON
-            const fullOnNow = station.controllers.filter(ctrl =>
-                ctrl.lamps.length > 0 &&
-                ctrl.lamps.every(l => l.state === "ON")
-            );
+            const fullOnNow = station.controllers.filter(
+                ctrl =>
+                    ctrl.lamps.length > 0 &&
+                    ctrl.lamps.every(l => l.state === 'ON')
+            )
 
-            if (fullOnNow.length >= requiredFullOn) return; // już spełnia
+            if (fullOnNow.length >= requiredFullOn) return
 
-            let missing = requiredFullOn - fullOnNow.length;
+            let missing = requiredFullOn - fullOnNow.length
 
-            // uzupełnij brakujące kanały do FULL ON
             for (const ctrl of station.controllers) {
-                if (missing <= 0) break;
-                if (ctrl.lamps.length === 0) continue;
+                if (missing <= 0) break
+                if (ctrl.lamps.length === 0) continue
 
-                // ustaw wszystkie lampy na ON
-                ctrl.lamps.forEach(l => (l.state = "ON"));
-                missing--;
+                ctrl.lamps.forEach(l => (l.state = 'ON'))
+                missing--
             }
-        });
-    });
+        })
+    })
 
-    return buildings;
+    return buildings
 }
 
 /* ------------------------------------------------------
-   🔧 INIT MOCK SERVER
+   Wewnętrzny reset stanu
+------------------------------------------------------ */
+function internalReset() {
+    // wyczyść tablicę reaktywnie
+    db.buildings.splice(0, db.buildings.length)
+
+    if (timer) {
+        clearInterval(timer)
+        timer = null
+    }
+}
+
+/* ------------------------------------------------------
+   INIT MOCK SERVER  —  z obsługą roli
 ------------------------------------------------------ */
 export async function initMockServer() {
-    if (db.buildings.length > 0) return; // nie ładuj drugi raz
+    const role = localStorage.getItem('role') || 'admin'
 
-    const response = await fetch('/demo/data/mock-backend-v2.json')
-    const mockData = await response.json()
+    // Jeśli mock był już załadowany dla INNEJ roli → wyczyść i ładuj od nowa
+    if (currentRole && currentRole !== role) {
+        internalReset()
+    }
+    if (db.buildings.length > 0) return
 
-    // 🟢 Wymuszenie logiki: min. 50% kanałów pełne ON
+    currentRole = role
+
+    let mockData
+
+    if (role === 'client') {
+        const response = await fetch('/demo/data/mock-backend-szpital.json')
+        const singleBuilding = await response.json()
+
+        mockData = { buildings: [singleBuilding] }
+        console.log('MockServer: rola client → mock-backend-szpital.json')
+    } else {
+        const response = await fetch('/demo/data/mock-backend-v2.json')
+        mockData = await response.json()
+        console.log('MockServer: rola admin → mock-backend-v2.json')
+    }
+
     mockData.buildings = enforceLampRules(mockData.buildings)
 
-    db.buildings = mockData.buildings
+    db.buildings.splice(0, db.buildings.length, ...mockData.buildings)
 
-    // 🔄 realizm działania
-    timer = setInterval(simulateActivity, 1000)
+    // symulacja pracy systemu
+    if (!timer) {
+        timer = setInterval(simulateActivity, 1000)
+    }
+}
+
+
+export function reset() {
+    internalReset()
+    currentRole = null
 }
 
 /* ------------------------------------------------------
-   🔄 SYMULACJA ŻYCIA SYSTEMU (działa co sekundę)
+   SYMULACJA ŻYCIA SYSTEMU (działa co sekundę)
 ------------------------------------------------------ */
 function simulateActivity() {
     db.buildings.forEach(b => {
         b.stations.forEach(station => {
-
-            // tick
             station.heartbeats += 1
             station.uptime += 1
 
-            // kontrolery
             station.controllers?.forEach(ctrl => {
                 ctrl.uptime += 1
 
-                // memory drift
                 if (Math.random() < 0.3) {
-                    ctrl.free_heap = Math.max(8192, ctrl.free_heap - Math.floor(Math.random() * 20))
+                    ctrl.free_heap = Math.max(
+                        8192,
+                        ctrl.free_heap - Math.floor(Math.random() * 20)
+                    )
                 } else if (Math.random() < 0.1) {
                     ctrl.free_heap += Math.floor(Math.random() * 50)
                 }
 
-                // 0.1% szansy na losowy ON/OFF lampy (bardzo rzadkie)
                 ctrl.lamps?.forEach(lamp => {
                     if (Math.random() < 0.001) {
                         lamp.state = lamp.state === 'ON' ? 'OFF' : 'ON'
@@ -92,29 +127,22 @@ function simulateActivity() {
         })
     })
 
-    // okazjonalny zapis mocka
     if (Math.random() < 0.02) saveMockState()
 }
 
 /* ------------------------------------------------------
-   💾 SYMULACJA ZAPISU (opcjonalne)
+   SYMULACJA ZAPISU
 ------------------------------------------------------ */
 function saveMockState() {
     try {
-        const json = JSON.stringify({ buildings: db.buildings }, null, 2)
-
-        if (window.showSaveFilePicker) {
-            // opcjonalnie można dodać realny zapis
-        } else {
-            console.debug('💾 Symulacja zapisu stanu mocka')
-        }
+        JSON.stringify({ buildings: db.buildings }, null, 2)
     } catch (err) {
         console.error('❌ Błąd zapisu mocka:', err)
     }
 }
 
 /* ------------------------------------------------------
-   🌐 API MOCK SERVERA
+   API MOCK SERVERA
 ------------------------------------------------------ */
 export const mockServer = {
     getBuildings() {

@@ -1,0 +1,29 @@
+/* -------------------------------------------------------
+   ui-cards.css
+------------------------------------------------------- */
+
+.ui-info-card {
+    border-radius: var(--ui-radius);
+    border: 1px solid var(--ui-border);
+    background: var(--ui-bg);
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.ui-info-title {
+    font-size: 18px;
+    color: var(--ui-text);
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.ui-info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 14px;
+    border-bottom: 1px solid var(--ui-border);
+}
+
+.ui-info-label { color: var(--ui-text-muted); }
+.ui-info-value { font-weight: 600; color: var(--ui-text); }

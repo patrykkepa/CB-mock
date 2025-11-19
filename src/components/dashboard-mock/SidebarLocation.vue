@@ -2,15 +2,16 @@
 import { ref, watch } from 'vue'
 
 const props = defineProps({
-    activeSubView: { type: String, required: true }
+    activeSubView: { type: String, required: true },
+    building: { type: Object, default: null }
 })
 
 const emit = defineEmits(['set-subview'])
 
 const collapsed = ref(localStorage.getItem('sidebar-collapsed') === 'true')
 
-watch(collapsed, val => {
-    localStorage.setItem('sidebar-collapsed', val ? 'true' : 'false')
+watch(collapsed, v => {
+    localStorage.setItem('sidebar-collapsed', v ? 'true' : 'false')
 })
 
 const sections = [
@@ -25,204 +26,204 @@ const sections = [
 
 <template>
     <aside
-        class="sidebar-industrial h-full flex flex-col overflow-x-hidden transition-all duration-300"
-        :class="collapsed ? 'w-20' : 'w-64'"
+        class="sidebar-modern h-full flex flex-col overflow-x-hidden transition-all duration-300"
+        :class="collapsed ? 'w-20 collapsed' : 'w-72'"
     >
 
-        <!-- TOP -->
-        <div class="industrial-top">
-            <button class="collapse-btn" @click="collapsed = !collapsed">
-                <i class="pi" :class="collapsed ? 'pi-angle-right' : 'pi-angle-left'"></i>
-            </button>
-        </div>
+        <!-- BUILDING INFO -->
+        <div class="building-header" v-if="props.building">
 
-        <!-- MENU -->
-        <div class="flex-1 flex flex-col gap-1 px-3 pb-4 overflow-y-auto">
-            <div v-for="section in sections" :key="section.key" class="relative group">
+            <!-- GÓRNY WIERSZ: nazwa + collapse button -->
+            <div class="bh-row">
+                <h2 class="bh-title" v-if="!collapsed">
+                    {{ props.building.name }}
+                </h2>
 
-                <!-- ACTIVE LED -->
-                <div v-if="props.activeSubView === section.key" class="active-led"></div>
-
-                <button
-                    class="industrial-module"
-                    :class="[
-                        props.activeSubView === section.key ? 'active' : '',
-                        collapsed ? 'justify-center' : 'justify-start gap-3'
-                    ]"
-                    @click="$emit('set-subview', section.key)"
-                >
-                    <i :class="section.icon" class="icon" />
-
-                    <span v-if="!collapsed" class="label">
-                        {{ section.label }}
-                    </span>
+                <button class="sm-collapse-btn" @click="collapsed = !collapsed">
+                    <i class="pi" :class="collapsed ? 'pi-angle-right' : 'pi-angle-left'"></i>
                 </button>
+            </div>
 
-                <!-- TOOLTIP -->
-                <div v-if="collapsed" class="tooltip">
-                    {{ section.label }}
-                </div>
+            <!-- ID budynku (znika przy collapse) -->
+            <div v-if="!collapsed" class="bh-id">
+                <i class="pi pi-hashtag"></i>
+                {{ props.building.id }}
             </div>
         </div>
 
-        <div class="industrial-bottom"></div>
+        <!-- MENU -->
+        <div class="flex-1 flex flex-col gap-2 px-3 pb-4 overflow-y-auto">
+            <div v-for="section in sections" :key="section.key" class="relative group">
+
+                <div v-if="props.activeSubView === section.key" class="sm-active-bar"></div>
+
+                <button
+                    class="sm-item"
+                    :class="[
+                        props.activeSubView === section.key ? 'active' : '',
+                        collapsed ? 'collapsed justify-center' : 'justify-start gap-3'
+                    ]"
+                    @click="$emit('set-subview', section.key)"
+                >
+                    <i :class="section.icon" class="sm-icon" />
+                    <span v-if="!collapsed" class="sm-label">{{ section.label }}</span>
+                </button>
+
+                <div v-if="collapsed" class="sm-tooltip">{{ section.label }}</div>
+            </div>
+        </div>
+
+        <div class="sm-bottom"></div>
     </aside>
 </template>
 
-
 <style scoped>
-/* BASE LAYOUT */
 
-.sidebar-industrial {
-    background: linear-gradient(180deg, #e4e5e7, #d8d9db);
-    border-right: 2px solid #bcbec1;
+/* MAIN BG — with rounded corners */
+.sidebar-modern {
+    background: #181e28;
+    border-right: 1px solid #1f242b;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-.app-dark .sidebar-industrial {
-    background: linear-gradient(180deg, #1a1c1e, #222426);
-    border-right-color: #2d2f31;
+/* BUILDING PANEL */
+.building-header {
+    padding: 18px;
+    border-bottom: 1px solid #202833;
 }
 
-.industrial-top {
-    padding: 10px;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+.bh-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bh-title {
+    color: #e8f0ff;
+    font-size: 20px;
+    font-weight: 600;
     margin-bottom: 10px;
 }
 
-.app-dark .industrial-top {
-    border-bottom-color: rgba(255,255,255,0.06);
+/* COLLAPSE BUTTON SECTION */
+.sm-top {
+    padding: 14px;
+    display: flex;
+    justify-content: flex-end;
 }
 
-/* BUTTON COLLAPSE */
-
-.collapse-btn {
-    padding: 8px 10px;
-    border-radius: 6px;
-    background: rgba(0,0,0,0.05);
-    border: 1px solid rgba(0,0,0,0.15);
-    color: #333;
+.sm-collapse-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #1a1f25;
+    border: 1px solid #2a3037;
+    color: #b5c3cf;
     transition: 0.2s;
 }
 
-.collapse-btn:hover {
-    background: rgba(0,0,0,0.1);
+.sm-collapse-btn:hover {
+    background: #232a31;
+    border-color: #3c4753;
+    color: white;
 }
 
-.app-dark .collapse-btn {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.15);
-    color: #d1d1d1;
-}
-
-.app-dark .collapse-btn:hover {
-    background: rgba(255,255,255,0.15);
-}
-
-/* MODULE BUTTONS */
-
-.industrial-module {
+/* MENU ITEMS */
+.sm-item {
     width: 100%;
     display: flex;
     align-items: center;
     padding: 12px;
-    border-radius: 6px;
-    background: var(--p-surface-100);
-    border: 1px solid var(--p-surface-300);
-    transition: 0.18s ease;
+    border-radius: 12px;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: all 0.15s ease;
 }
 
-.industrial-module:hover {
-    background: var(--p-surface-200);
+.sm-item:hover {
+    background: #1a1f25;
+    border-color: #2c323a;
 }
 
-.app-dark .industrial-module {
-    background: var(--p-surface-800);
-    border-color: var(--p-surface-600);
-}
-
-.app-dark .industrial-module:hover {
-    background: var(--p-surface-700);
-}
-
-/* ACTIVE STATE — DYNAMIC THEME COLORS */
-
-.industrial-module.active {
-    border-color: var(--p-primary-500);
-    background: var(--p-highlight-bg);
-    color: var(--p-highlight-color);
-}
-
-.app-dark .industrial-module.active {
-    border-color: var(--p-primary-400);
-    background: var(--p-highlight-bg);
-    color: var(--p-highlight-color);
-}
-
-/* LED STRIP */
-
-.active-led {
-    position: absolute;
-    left: -6px;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: var(--p-primary-500);
-    border-radius: 4px;
-}
-
-.app-dark .active-led {
-    background: var(--p-primary-300);
-}
-
-/* ICONS & LABELS */
-
-.icon {
+.sm-icon {
     font-size: 18px;
-    color: var(--p-text-color);
+    color: #8d9aa8;
 }
 
-.label {
-    font-size: 14px;
-    white-space: nowrap;
-    color: var(--p-text-color);
+.sm-label {
+    font-size: 15px;
+    color: #cbd5df;
 }
 
-.app-dark .icon,
-.app-dark .label {
-    color: var(--p-text-color);
+/* ACTIVE ITEM */
+.sm-item.active {
+    background: rgba(127,162,191,0.15); /* powder blue soft */
+    border-color: rgba(127,162,191,0.35);
+    box-shadow: 0 2px 4px rgba(127,162,191,0.18);
+}
+
+.sm-item.active .sm-icon {
+    color: #38bdf8;
+}
+.sm-item.active .sm-label {
+    color: #e3f6ff;
+}
+
+/* ACTIVE BAR (pastel, subtle) */
+.sm-active-bar {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 3px;
+    background: #7fa2bf; /* pastel petrol blue */
+    border-radius: 4px;
+    opacity: 0.85;
+}
+
+/* COLLAPSED MODE */
+.sidebar-modern.collapsed .bh-title {
+    display: none;
+}
+
+.sidebar-modern.collapsed .sm-item {
+    padding: 12px 10px;
+}
+
+.sidebar-modern.collapsed .sm-label {
+    display: none;
+}
+
+.sidebar-modern.collapsed .sm-icon {
+    margin: 0;
 }
 
 /* TOOLTIP */
-
-.tooltip {
+.sm-tooltip {
     position: absolute;
-    left: calc(100% + 10px);
+    left: calc(100% + 12px);
     top: 50%;
     transform: translateY(-50%);
-    background: #111;
-    color: #fff;
-    padding: 4px 8px;
+    padding: 6px 10px;
     font-size: 12px;
-    border-radius: 4px;
-    pointer-events: none;
+    color: white;
+    background: #11151a;
+    border: 1px solid #2a3037;
+    border-radius: 8px;
     opacity: 0;
-    transition: 0.12s;
+    pointer-events: none;
+    transition: opacity 0.15s;
 }
 
-.group:hover .tooltip {
+.group:hover .sm-tooltip {
     opacity: 1;
 }
 
-/* BOTTOM */
-
-.industrial-bottom {
+/* BOTTOM SPACER */
+.sm-bottom {
     height: 20px;
-    background: linear-gradient(180deg, #d3d4d6, #c1c2c4);
-    border-top: 1px solid rgba(0,0,0,0.15);
-}
-
-.app-dark .industrial-bottom {
-    background: linear-gradient(180deg, #1d1e20, #18191b);
-    border-top-color: rgba(255,255,255,0.08);
 }
 </style>
