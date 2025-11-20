@@ -204,8 +204,8 @@ function refreshView() {
                             :channels="selectedStation.controllers"
                             :formatUptime="formatUptime"
                             :timeAgo="timeAgo"
-                            :expandedChannel="expandedChannel"
-                            @toggle-channel="id => expandedChannel = expandedChannel === id ? null : id"
+                            :activeChannelId="expandedChannel"
+                            @toggle-channel="(id) => (expandedChannel = expandedChannel === id ? null : id)"
                             @back="resetToStations"
                         />
 
@@ -244,8 +244,13 @@ function refreshView() {
                             :key="'rack-' + selectedBuilding.id"
                             :building="selectedBuilding"
                             @select-station="st => selectedStation = st"
-                            @open-channel="id => expandedChannel = id"
+                            @open-channel="payload => {
+                                const station = selectedBuilding.stations.find(s => s.device_id === payload.stationId)
+                                selectedStation = station
+                                expandedChannel = payload.channelId
+                            }"
                         />
+
 
                     </transition>
                 </main>
