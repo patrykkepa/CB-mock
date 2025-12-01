@@ -8,7 +8,7 @@ const route = useRoute()
 
 const buildingSections = [
     { key: 'overview', label: 'Overview', icon: 'pi pi-chart-bar' },
-    { key: 'rack',     label: 'Rack',     icon: 'pi pi-server' },
+    { key: 'rack',     label: 'Stations',     icon: 'pi pi-server' },
     { key: 'tests',    label: 'Tests',    icon: 'pi pi-check-circle' },
     { key: 'power',    label: 'Power',    icon: 'pi pi-bolt' },
     { key: 'history',  label: 'History',  icon: 'pi pi-clock' },

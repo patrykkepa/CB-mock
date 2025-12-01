@@ -10,7 +10,8 @@
             <Button label="Get Started" as="router-link" to="/auth/login" rounded class="!text-xl mt-8 !px-4"></Button>
         </div>
         <div class="flex justify-center md:justify-end">
-            <img src="/demo/images/landing/screen-1.png" alt="Hero Image" class="w-9/12 md:w-auto" />
+<!--            <img src="/demo/images/landing/screen-1.png" alt="Hero Image" class="w-9/12 md:w-auto" />-->
+            <img src="/demo/images/landing/cb%20sc%201.png" alt="Hero Image" class="w-5/12" />
         </div>
     </div>
 </template>

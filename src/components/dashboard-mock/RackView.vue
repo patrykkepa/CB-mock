@@ -64,7 +64,7 @@ function channelStatus(ctrl) {
         <!-- HEADER-->
         <header class="ui-header">
             <h2 class="ui-header-title">
-                {{ t('dashboard.rack') || 'Rack overview' }}
+                {{ t('dashboard.stations') || 'Stations overview' }}
             </h2>
             <div class="ui-header-meta">
                 <span class="ui-meta-pill">
